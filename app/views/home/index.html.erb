@@ -1,4 +1,5 @@
 <link href="//cdn2.hubspot.net/hubfs/514770/css/strap.css?t=1462536216307" rel="stylesheet">
+<% unless user_signed_in? %>
 <div class="main-content full blog blog-new">
   <div class="content">
     <div class="sections">
@@ -94,6 +95,30 @@
     </div>
   </div>
 </div>
+<% else %>
+<div class="main-content full blog blog-new">
+  <div class="content">
+    <div class="sections">
+      <section id="contracts" class="scrollspy gray-02-bg">
+        <div class="container">
+          <div class="row vert-margined-20">
+            <div class="horiz-padded-2 full left listing-title">
+              <a class="vert-margined right btn btn-secondary waves-effect" href="/rooms">모두 보기</a>
+              <h2 class="vert-margined">단기입주 가능한 원룸/오피스텔</h2>
+              <p id="target" class="scrollspy">단기입주 위주의 원룸과 오피스텔 목록입니다</p>
+            </div>
+            <div class="post-listing">
+              <% (1..6).each do |i| %>
+                <%= render partial: "post" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<% end %>
 
 <footer class="strap-footer full left">
   <div class="container text-white">

@@ -1,2 +1,52 @@
-<h1>Rooms#read</h1>
-<p>Find me in app/views/rooms/read.html.erb</p>
+<link href="//cdn2.hubspot.net/hubfs/514770/css/strap.css?t=1462536216307" rel="stylesheet">
+<div class="main-content full blog blog-new">
+  <div class="content">
+    <div class="sections">
+      <section class="gray-02-bg">
+        <div class="container">
+          <div class="row vert-margined-20">
+            <center>
+              <div class="horiz-padded-2 full left listing-title">
+                <h2 class="vert-margined">방 리스트</h2>
+                <p id="target" class="scrollspy">필터를 쒜낏쒜낏</p>
+              </div>
+              <div class="vert-margined-20">
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">서울대입구</a>
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">낙성대</a>
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">고시촌(녹두)</a>
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">남성</a>
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">여성</a>
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">원룸/오피스텔</a>
+                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">전대차</a>
+              </div>
+            </center>
+            <hr/>
+            <div class="post-listing">
+              <% (1..6).each do |i| %>
+                <%= render partial: "home/post" %>
+              <% end %>
+            </div>
+            <center><span>pagination placeholder</span></center>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<footer class="strap-footer full left">
+  <div class="container text-white">
+    <div class="row">
+      <div class="full left">
+        <div class="col s12 m8">
+          <p class="small full source-org copyright">© 2016 Strap. Made with <i class="icon-favorite"></i> in Cincinnati, OH. <a class="horiz-margined" href="/terms">Terms</a><a class="horiz-margined" href="/privacy">Privacy Policy</a></p>
+        </div>
+        <div class="col s12 m4 text-right">
+          <h3>
+            <a class="padded" href="https://github.com/pjhjohn/danbang" target="_blank"><i class="icon-github"></i></a>
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

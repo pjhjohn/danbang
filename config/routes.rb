@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'rooms/edit'
 
+  get 'rooms' => "rooms#index"
+
   get 'home/index'
 
   root 'home#index'

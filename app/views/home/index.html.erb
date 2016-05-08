@@ -1,0 +1,142 @@
+<div class="main-content full blog blog-new">
+  <div class="content">
+    <div class="sections">
+      <span id="hs_cos_wrapper_slider_hero" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget" style="" data-hs-cos-general-type="widget" data-hs-cos-type="custom_widget"><div class="slider">
+        <ul class="slides">
+          <li>
+            <img src="//cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=2000&amp;height=800" width="2000" height="800" alt="slide1.jpeg" srcset="//cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=1000&amp;height=400 1000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=2000&amp;height=800 2000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=3000&amp;height=1200 3000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=4000&amp;height=1600 4000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=5000&amp;height=2000 5000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=6000&amp;height=2400 6000w" sizes="(max-width: 2000px) 100vw, 2000px">
+              <!-- random image -->
+              <div class="caption left-align">
+                <div class="full left">
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-3 col-xs-offset-3 col-sm-offset-0 col-md-3 col-lg-4">
+                      <img src="//cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=600&amp;height=475" width="600" height="475" alt="Sleep and Activity Engagement" srcset="//cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=300&amp;height=238 300w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=600&amp;height=475 600w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=900&amp;height=713 900w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=1200&amp;height=950 1200w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=1500&amp;height=1188 1500w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=1800&amp;height=1425 1800w" sizes="(max-width: 600px) 100vw, 600px">
+                    </div>
+                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-8">
+                      <h1>Moving Beyond Basic Data</h1>
+                      <p>Strap’s integration platform delivers data + analytics so that wellness companies and health systems can focus on what they do best – helping people stay&nbsp;healthy.&nbsp;</p>
+                      <p><a href="//www.straphq.com" rel="" target="">Learn More</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </span>
+      <div id="" class="gray-02-bg">
+        <div class="container">
+          <div class="row vert-margined-20">
+            <div class="horiz-padded-2 full left listing-title">
+              <a class="vert-margined right btn btn-secondary waves-effect" href="//www.straphq.com/resources/topic/company-news">See All</a>
+              <h2 class="vert-margined">Blog</h2>
+              <p class="">Thoughts, announcements, and news from Strap </p>
+            </div>
+            <div class="post-listing">
+              <% (1..6).each do |i| %>
+                <%= render partial: "post" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="" class="gray-02-bg">
+        <div class="container">
+          <div class="row vert-margined-20">
+            <div class="horiz-padded-2 full left listing-title">
+              <a class="vert-margined right btn btn-secondary waves-effect" href="//www.straphq.com/resources/topic/company-news">See All</a>
+              <h2 class="vert-margined">Blog</h2>
+              <p class="">Thoughts, announcements, and news from Strap </p>
+            </div>
+            <div class="post-listing">
+              <% (1..6).each do |i| %>
+                <%= render partial: "post" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Roll Smart Pixel Code -->
+<script type="text/javascript">
+  adroll_adv_id = "P4IIVDUGFZH4BBWERU63A3";
+  adroll_pix_id = "ID64RJ7F3NERPKYUUR3G4C";
+  (function() {
+    var _onload = function() {
+      if (document.readyState && !/loaded|complete/.test(document.readyState)) {
+        setTimeout(_onload, 10);
+        return
+      }
+      if (!window.__adroll_loaded) {
+        __adroll_loaded = true;
+        setTimeout(_onload, 50);
+        return
+      }
+      var scr = document.createElement("script");
+      var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+      scr.setAttribute('async', 'true');
+      scr.type = "text/javascript";
+      scr.src = host + "/j/roundtrip.js";
+      ((document.getElementsByTagName('head') || [null])[0] ||
+        document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+    };
+    if (window.addEventListener) {
+      window.addEventListener('load', _onload, false);
+    }
+    else {
+      window.attachEvent('onload', _onload)
+    }
+  }());
+</script>
+<!-- End Add Roll -->
+
+<!-- <script async src="https://cdn2.hubspot.net/hubfs/514770/js/jquery.min.js"></script> -->
+<script src="//cdn2.hubspot.net/hubfs/514770/js/scrollmagic/ScrollMagic.min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/scrollmagic/plugins/TweenMax.min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/scrollmagic/plugins/ScrollToPlugin.min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/scrollmagic/plugins/animation.gsap.min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/min/materialize-min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/min/typeout-min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/min/headroom-min.js?t=1462536216307"></script>
+<script src="//cdn2.hubspot.net/hubfs/514770/js/min/main-home-min.js?t=1462536216307"></script>
+
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+  window.___gcfg = {
+    lang: 'en-US',
+    parsetags: 'onload'
+  };
+  (function() {
+    var po = document.createElement('script');
+    po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  ! function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, "script", "twitter-wjs");
+</script>

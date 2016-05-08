@@ -11,7 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508080418) do
+ActiveRecord::Schema.define(version: 20160508124914) do
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.string   "image1",        default: "", null: false
+    t.string   "image2",        default: "", null: false
+    t.string   "image3",        default: "", null: false
+    t.string   "image4",        default: "", null: false
+    t.string   "image5",        default: "", null: false
+    t.string   "address",       default: "", null: false
+    t.integer  "lat",           default: 0,  null: false
+    t.integer  "lng",           default: 0,  null: false
+    t.integer  "location",                   null: false
+    t.integer  "monthly_pay",                null: false
+    t.datetime "in_date",                    null: false
+    t.integer  "insurance_pay", default: 0,  null: false
+    t.integer  "admin_pay",     default: 0,  null: false
+    t.integer  "type",                       null: false
+    t.integer  "story",                      null: false
+    t.integer  "size",                       null: false
+    t.boolean  "parking",                    null: false
+    t.boolean  "elevator",                   null: false
+    t.datetime "out_date",                   null: false
+    t.string   "admin_options", default: "", null: false
+    t.text     "option",        default: "", null: false
+    t.text     "description",   default: "", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

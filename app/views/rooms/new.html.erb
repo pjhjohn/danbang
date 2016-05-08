@@ -1,0 +1,123 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<div class="main-content full">
+  <div class="container" style="min-height:768px;">
+    <div class="row">
+      <div class="col m6 offset-m3 s12">
+        <h2>새 방 등록하기</h2>
+
+        <%= form_tag '/rooms/create', multipart: true do %>
+          <%= label_tag :address %>
+          <%= text_field_tag :address %>
+          
+          <div class="input-field col s12">
+            <select>
+              <option value="">선택</option>
+              <option value="1">서울대입구</option>
+              <option value="2">낙성대</option>
+              <option value="3">고시촌(녹두)</option>
+            </select>
+            <label>location</label>
+          </div>
+          
+          <div class="input-field col s12">
+            <select>
+              <option value="">선택</option>
+              <option value="1">서울대입구</option>
+              <option value="2">낙성대</option>
+              <option value="3">고시촌(녹두)</option>
+            </select>
+            <label>type</label>
+          </div>
+          
+          <div class="input-field col s12">
+            <select>
+              <option value="">선택</option>
+              <option value="-1">서울대입구</option>
+              <option value="1">낙성대</option>
+              <option value="2">고시촌(녹두)</option>
+            </select>
+            <label>story</label>
+          </div>
+          
+          <%= label_tag :insurance_pay %>
+          <%= number_field_tag :insurance_pay %>
+          
+          <%= label_tag :monthly_pay %>
+          <%= number_field_tag :monthly_pay %>
+          
+          <%= label_tag :admin_pay %>
+          <%= number_field_tag :admin_pay %>
+          
+          <%= label_tag :size %>
+          <%= number_field_tag :size %>
+          
+          <%= label_tag :in_date %>
+          <%= date_field_tag :in_date, class: :datepicker %>
+          
+          <%= label_tag :out_date %>
+          <%= date_field_tag :out_date, class: :datepicker %>
+          
+          <%= label_tag :parking %>
+          <div class="switch">
+            <label>
+              Off
+              <%= check_box_tag :parking %>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+          
+          <%= label_tag :elevator %>
+          <div class="switch">
+            <label>
+              Off
+              <%= check_box_tag :elevator %>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+          
+          <%= label_tag :admin_options %>
+          <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
+          
+          <%= label_tag :option %>
+          <%= text_area_tag :option, nil, class: "materialize-textarea" %>
+          
+          <%= label_tag :description %>
+          <%= text_area_tag :description, nil, class: "materialize-textarea" %>
+        
+          <%= hidden_field_tag 'lat'%>
+          <%= hidden_field_tag 'lng'%>
+  
+          <%= label_tag :query_id_lnglat, "지도 상 위치표시" %>
+          <div id="map_search" class="input-group">
+            <div class="col s10">
+              <%= text_field_tag :query_id_lnglat, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
+            </div>
+            <div class="col s2">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="query_submit_id_lnglat">검색</button>
+              </span>
+            </div>
+          </div>
+          <br />
+          <div id="map_canvas_id_lnglat" style="width: 100%; height: 300px;">map loading ...</div>
+          <br />
+          
+        
+          <% (1..5).each do |i| %>
+          <%= label_tag "image#{i}", "Image#{i}" %>
+          <div class="file-field input-field" style="margin-top:5px;">
+            <div class="btn" style="padding-top:0px;">Image<%= file_field_tag "image#{i}" %></div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+          <% end %>
+          
+          <%= submit_tag '올리기', class: "btn s12 vert-margined-20" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

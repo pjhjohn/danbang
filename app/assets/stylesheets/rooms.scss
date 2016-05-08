@@ -1,0 +1,10 @@
+// Place all the styles related to the rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#map_canvas_id_lnglat img {
+  max-width: none;
+}
+#map_canvas_id_lnglat label {
+  width: auto;
+  display: inline;
+}

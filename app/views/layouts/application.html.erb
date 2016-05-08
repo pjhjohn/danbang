@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Danbang</title>
+  <title>잔방처리반</title>
   <%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %>
   <%=javascript_include_tag 'application', 'data-turbolinks-track'=> true %>
   <!--MaterializeCSS-->
@@ -27,19 +27,23 @@
 <!-- HEADER -->
 <header id="header" class="headroom hide-header-cta">
   <nav id="mainHeader" class="navbar-fixed" style="padding: 0px 15px;">
-    <div class="navbar-header relative z-index-5">
-      <a class="navbar-brand" href="/">
-        <img class="img-responsive center" src="//cdn2.hubspot.net/hubfs/514770/img/strap-logo2.png?t=1462536216307" alt="Strap">
-      </a>
-    </div>
+    <!--<div class="navbar-header relative z-index-5">-->
+    <!--  <a class="navbar-brand" href="/">-->
+    <!--    <img class="img-responsive center" src="//cdn2.hubspot.net/hubfs/514770/img/strap-logo2.png?t=1462536216307" alt="Strap">-->
+    <!--  </a>-->
+    <!--</div>-->
+    <ul class="left">
+      <li><a href="/">잔방처리반</a></li>
+    </ul>
     <ul class="right">
       <li><a href="#" class="notice" style="color:orange;"><%= notice %></a></li>
       <li><a href="#" class="alert" style="color:red;"><%= alert %></a></li>
       <% if user_signed_in? %>
-        <li><%= link_to('SIGN OUT', destroy_user_session_path, :method => :delete) %></li>
+        <li><%= link_to('방 등록하기', '/rooms/new') %></li>
+        <li><%= link_to('로그아웃', destroy_user_session_path, :method => :delete) %></li>
       <% else %>
-        <li><%= link_to('SIGN IN', new_user_session_path) %></li>
-        <li><%= link_to('SIGN UP', new_user_registration_path) %></li>
+        <li><%= link_to('로그인', new_user_session_path) %></li>
+        <li><%= link_to('가입하기', new_user_registration_path) %></li>
       <% end %>
     </ul>
   </nav>

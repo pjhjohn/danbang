@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'rooms/create'
+
+  get 'rooms/read'
+
+  get 'rooms/update'
+
+  get 'rooms/delete'
+
+  get 'rooms/new'
+
+  get 'rooms/edit'
+
   get 'home/index'
 
   root 'home#index'

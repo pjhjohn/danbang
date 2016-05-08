@@ -3,40 +3,50 @@
   <div class="container" style="min-height:768px;">
     <div class="row">
       <div class="col m6 offset-m3 s12">
-        <h2>새 방 등록하기</h2>
+        <center>
+          <h3>새 방 등록하기</h3>
+        </center>
 
         <%= form_tag '/rooms/create', multipart: true do %>
           <%= label_tag :address %>
           <%= text_field_tag :address %>
           
-          <div class="input-field col s12">
-            <select>
-              <option value="">선택</option>
-              <option value="1">서울대입구</option>
-              <option value="2">낙성대</option>
-              <option value="3">고시촌(녹두)</option>
-            </select>
-            <label>location</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <select>
+                <option value=""></option>
+                <option value="1">서울대입구</option>
+                <option value="2">낙성대</option>
+                <option value="3">고시촌(녹두)</option>
+              </select>
+              <label>location</label>
+            </div>
           </div>
           
-          <div class="input-field col s12">
-            <select>
-              <option value="">선택</option>
-              <option value="1">서울대입구</option>
-              <option value="2">낙성대</option>
-              <option value="3">고시촌(녹두)</option>
-            </select>
-            <label>type</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <select>
+                <option value=""></option>
+                <option value="1">한칸</option>
+                <option value="2">1.5칸</option>
+                <option value="3">2칸</option>
+              </select>
+              <label>type</label>
+            </div>
           </div>
-          
-          <div class="input-field col s12">
-            <select>
-              <option value="">선택</option>
-              <option value="-1">서울대입구</option>
-              <option value="1">낙성대</option>
-              <option value="2">고시촌(녹두)</option>
-            </select>
-            <label>story</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <select>
+                <option value=""></option>
+                <option value="1">B1</option>
+                <option value="2">반지하</option>
+                <option value="3">1층</option>
+                <option value="4">2층</option>
+                <option value="5">3층</option>
+                <option value="6">4층</option>
+              </select>
+              <label>story</label>
+            </div>
           </div>
           
           <%= label_tag :insurance_pay %>
@@ -52,10 +62,10 @@
           <%= number_field_tag :size %>
           
           <%= label_tag :in_date %>
-          <%= date_field_tag :in_date, class: :datepicker %>
+          <%= date_field_tag :in_date, nil, class: "datepicker" %>
           
           <%= label_tag :out_date %>
-          <%= date_field_tag :out_date, class: :datepicker %>
+          <%= date_field_tag :out_date, nil, class: "datepicker" %>
           
           <%= label_tag :parking %>
           <div class="switch">
@@ -90,20 +100,17 @@
           <%= hidden_field_tag 'lng'%>
   
           <%= label_tag :query_id_lnglat, "지도 상 위치표시" %>
-          <div id="map_search" class="input-group">
+          <div id="map_search" class="row input-group">
             <div class="col s10">
               <%= text_field_tag :query_id_lnglat, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
             </div>
-            <div class="col s2">
+            <div class="s2">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" id="query_submit_id_lnglat">검색</button>
               </span>
             </div>
+            <div id="map_canvas_id_lnglat" class="col s12" style="height: 300px;margin: 0px 11.25px">map loading ...</div>
           </div>
-          <br />
-          <div id="map_canvas_id_lnglat" style="width: 100%; height: 300px;">map loading ...</div>
-          <br />
-          
         
           <% (1..5).each do |i| %>
           <%= label_tag "image#{i}", "Image#{i}" %>
@@ -115,7 +122,7 @@
           </div>
           <% end %>
           
-          <%= submit_tag '올리기', class: "btn s12 vert-margined-20" %>
+          <%= submit_tag '올리기', class: "btn vert-margined-20", style: "width:100%;" %>
         <% end %>
       </div>
     </div>

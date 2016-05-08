@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'rooms/create'
+  post 'rooms/create'
 
-  get 'rooms/read'
+  post 'rooms/read'
 
-  get 'rooms/update'
+  post 'rooms/update'
 
-  get 'rooms/delete'
+  post 'rooms/delete'
 
   get 'rooms/new'
 

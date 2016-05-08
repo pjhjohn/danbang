@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>잔방처리반</title>
   <%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %>
   <%=javascript_include_tag 'application', 'data-turbolinks-track'=> true %>
@@ -9,29 +14,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
   <%=csrf_meta_tags %>
-
-  <!--Strap-->
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Language" content="en">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-
-  <!--[if lt IE 9]>
-  <script src="https://static.hsstatic.net/content_shared_assets/static-1.4019/js/css3-mediaqueries.js"></script>
-  <![endif]-->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//cdn2.hubspot.net/hub/514770/hub_generated/style_manager/1427741117184/custom/styles/default/hs_default_custom_style.min.css" rel="stylesheet">
-  <link href="//cdn2.hubspot.net/hubfs/514770/css/strap.css?t=1462536216307" rel="stylesheet">
 </head>
 <!-- HEADER -->
 <header id="header" class="headroom hide-header-cta">
   <nav id="mainHeader" class="navbar-fixed" style="padding: 0px 15px;">
-    <!--<div class="navbar-header relative z-index-5">-->
-    <!--  <a class="navbar-brand" href="/">-->
-    <!--    <img class="img-responsive center" src="//cdn2.hubspot.net/hubfs/514770/img/strap-logo2.png?t=1462536216307" alt="Strap">-->
-    <!--  </a>-->
-    <!--</div>-->
     <ul class="left">
       <li><a href="/">잔방처리반</a></li>
     </ul>
@@ -52,26 +38,5 @@
 <body class="new-body">
   <%=yield %>
 </body>
-
-<footer class="strap-footer full left">
-  <div class="container text-white">
-    <div class="row">
-      <div class="full left">
-        <div class="col s12 m8">
-          <p class="small full source-org copyright">© 2016 Strap. Made with <i class="icon-favorite"></i> in Cincinnati, OH. <a class="horiz-margined" href="/terms">Terms</a><a class="horiz-margined" href="/privacy">Privacy Policy</a></p>
-        </div>
-        <div class="col s12 m4 text-right">
-          <h3>
-            <a class="padded" href="https://www.facebook.com/getstrap" target="_blank"><i class="icon-facebook"></i></a>
-            <a class="padded" href="https://twitter.com/getstrap" target="_blank"><i class="icon-twitter"></i></a>
-            <a class="padded" href="https://www.linkedin.com/company/strap" target="_blank"><i class="icon-linkedin"></i></a>
-            <a class="padded" href="http://slack.straphq.com" target="_blank"><i class="icon-slack"></i></a>
-            <a class="padded" href="https://github.com/strap/" target="_blank"><i class="icon-github"></i></a>
-          </h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
 
 </html>

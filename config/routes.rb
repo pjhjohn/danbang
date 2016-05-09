@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   post 'rooms/create'
 
-  post 'rooms/read'
-
   post 'rooms/update'
 
   post 'rooms/delete'

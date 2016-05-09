@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   def index
+    read
   end
 
   def new
@@ -14,7 +15,9 @@ class RoomsController < ApplicationController
   end
 
   def read
-    redirect_to "/"
+    @is_oneroom = params[:is_oneroom] || true
+    @gender = params[:gender] || "male"
+    @location = params[:location] || 1
   end
 
   def update

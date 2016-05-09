@@ -10,15 +10,20 @@
                 <h2 class="vert-margined">방 리스트</h2>
                 <p id="target" class="scrollspy">필터를 쒜낏쒜낏</p>
               </div>
-              <div class="vert-margined-20">
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">서울대입구</a>
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">낙성대</a>
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">고시촌(녹두)</a>
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">남성</a>
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">여성</a>
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">원룸/오피스텔</a>
-                <a class="vert-margined btn btn-secondary waves-effect" href="/rooms">전대차</a>
+              <div id="filter" class="vert-margined-20">
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @location == "1" %>" data-filter-type="location" data-value="1" href="#">서울대입구</a>
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @location == "2" %>" data-filter-type="location" data-value="2" href="#">낙성대</a>
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @location == "3" %>" data-filter-type="location" data-value="3" href="#">고시촌(녹두)</a>
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @gender == "male" %>" data-filter-type="gender" data-value="male" href="#">남성</a>
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @gender == "female" %>" data-filter-type="gender" data-value="female" href="#">여성</a>
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @is_oneroom == "true" %>" data-filter-type="is_oneroom" data-value="true" href="#">원룸/오피스텔</a>
+                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @is_oneroom == "false" %>" data-filter-type="is_oneroom" data-value="false" href="#">전대차</a>
               </div>
+              <%= form_tag '/rooms', id: "filter-form", method: 'get', multipart: true do %>
+                <%= hidden_field_tag :location, nil, id: "filter-form-location" %>
+                <%= hidden_field_tag :gender, nil, id: "filter-form-gender" %>
+                <%= hidden_field_tag :is_oneroom, nil, id: "filter-form-is_oneroom" %>
+              <% end %>
             </center>
             <hr/>
             <div class="post-listing">
@@ -50,3 +55,21 @@
     </div>
   </div>
 </footer>
+
+<script>
+  $(document).ready(function(){
+    // register form from selected
+    $('#filter>a.btn-selected').each(function(index, item) {
+      $('#filter-form>'+'#filter-form-'+$(item).data('filter-type')).val($(item).data('value'));
+    });
+    // send form
+    $('#filter>a').each(function(index, item) {
+      $(item).click(function(event) {
+        event.preventDefault();
+        console.log('clicked');
+        $('#filter-form>'+'#filter-form-'+$(this).data('filter-type')).val($(this).data('value'));
+        $('#filter-form').submit();
+      });
+    })
+  });
+</script>

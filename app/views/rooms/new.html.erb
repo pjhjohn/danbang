@@ -2,7 +2,7 @@
 <div class="main-content full">
   <div class="container" style="min-height:768px;">
     <div class="row">
-      <div class="col m6 offset-m3 s12">
+      <div class="col l6 offset-l3 m12">
         <center>
           <h3>새 방 등록하기</h3>
         </center>
@@ -101,13 +101,15 @@
   
           <%= label_tag :query_id_lnglat, "지도 상 위치표시" %>
           <div id="map_search" class="row input-group">
-            <div class="col s10">
+            <div class="col s9">
               <%= text_field_tag :query_id_lnglat, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
             </div>
-            <div class="s2">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="query_submit_id_lnglat">검색</button>
-              </span>
+            <div class="s3">
+              <center>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" id="query_submit_id_lnglat">검색</button>
+                </span>
+              </center>
             </div>
             <div id="map_canvas_id_lnglat" class="col s12" style="height: 300px;margin: 0px 11.25px">map loading ...</div>
           </div>

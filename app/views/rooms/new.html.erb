@@ -8,9 +8,20 @@
         </center>
 
         <%= form_tag '/rooms/create', multipart: true do %>
-          <%= label_tag :address %>
-          <%= text_field_tag :address %>
-          
+          <%# is_oneroom %>
+          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "전대차 여부" %></div>
+          <div class="row">
+            <div class="col l6">
+              <%= radio_button_tag :is_oneroom, :true, false, class: "with-gap" %>
+              <%= label_tag :is_oneroom_true, "원룸/오피스텔" %>
+            </div>
+            <div class="col l6">
+              <%= radio_button_tag :is_oneroom, :false, false, class: "with-gap" %>
+              <%= label_tag :is_oneroom_false, "전대차" %>
+            </div>
+          </div>
+
+          <%# location %>
           <div class="row">
             <div class="input-field col s12">
               <select>
@@ -19,90 +30,17 @@
                 <option value="2">낙성대</option>
                 <option value="3">고시촌(녹두)</option>
               </select>
-              <label>location</label>
+              <label>위치</label>
             </div>
           </div>
-          
-          <div class="row">
-            <div class="input-field col s12">
-              <select>
-                <option value=""></option>
-                <option value="1">한칸</option>
-                <option value="2">1.5칸</option>
-                <option value="3">2칸</option>
-              </select>
-              <label>room_type</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <select>
-                <option value=""></option>
-                <option value="1">B1</option>
-                <option value="2">반지하</option>
-                <option value="3">1층</option>
-                <option value="4">2층</option>
-                <option value="5">3층</option>
-                <option value="6">4층</option>
-              </select>
-              <label>story</label>
-            </div>
-          </div>
-          
-          <%= label_tag :insurance_pay %>
-          <%= number_field_tag :insurance_pay %>
-          
-          <%= label_tag :monthly_pay %>
-          <%= number_field_tag :monthly_pay %>
-          
-          <%= label_tag :admin_pay %>
-          <%= number_field_tag :admin_pay %>
-          
-          <%= label_tag :size %>
-          <%= number_field_tag :size %>
-          
-          <%= label_tag :in_date %>
-          <%= date_field_tag :in_date, nil, class: "datepicker" %>
-          
-          <%= label_tag :out_date %>
-          <%= date_field_tag :out_date, nil, class: "datepicker" %>
-          
-          <%= label_tag :parking %>
-          <div class="switch">
-            <label>
-              Off
-              <%= check_box_tag :parking %>
-              <span class="lever"></span>
-              On
-            </label>
-          </div>
-          
-          <%= label_tag :elevator %>
-          <div class="switch">
-            <label>
-              Off
-              <%= check_box_tag :elevator %>
-              <span class="lever"></span>
-              On
-            </label>
-          </div>
-          
-          <%= label_tag :admin_options %>
-          <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
-          
-          <%= label_tag :option %>
-          <%= text_area_tag :option, nil, class: "materialize-textarea" %>
-          
-          <%= label_tag :description %>
-          <%= text_area_tag :description, nil, class: "materialize-textarea" %>
-        
+
+          <%# address + map + lat&lng %>
           <%= hidden_field_tag 'lat'%>
           <%= hidden_field_tag 'lng'%>
-  
-          <%= label_tag :query_id_lnglat, "지도 상 위치표시" %>
+          <%= label_tag :address, "주소" %>
           <div id="map_search" class="row input-group">
             <div class="col s9">
-              <%= text_field_tag :query_id_lnglat, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
+              <%= text_field_tag :address, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
             </div>
             <div class="s3">
               <center>
@@ -113,9 +51,121 @@
             </div>
             <div id="map_canvas_id_lnglat" class="col s12" style="height: 300px;margin: 0px 11.25px">map loading ...</div>
           </div>
-        
+
+          <%# insurance_pay %>
+          <%= label_tag :insurance_pay, "보증금" %>
+          <%= number_field_tag :insurance_pay %>
+
+          <%# monthly_pay %>
+          <%= label_tag :monthly_pay, "월세" %>
+          <%= number_field_tag :monthly_pay %>
+
+          <%# admin_pay %>
+          <%= label_tag :admin_pay, "관리비" %>
+          <%= number_field_tag :admin_pay %>
+
+          <%# admin_option %>
+          <%= label_tag :admin_options, "관리비 포함항목" %>
+          <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
+
+          <%# in&out date %>
+          <div class="row">
+            <div class="col l6">
+              <%= label_tag :in_date, "계약가능 첫날" %>
+              <%= date_field_tag :in_date, nil, class: "datepicker" %>
+            </div>
+            <div class="col l6">
+              <%= label_tag :out_date, "계약가능 마지막날" %>
+              <%= date_field_tag :out_date, nil, class: "datepicker" %>
+            </div>
+          </div>
+
+          <%# room_type %>
+          <div class="row">
+            <div class="input-field col s12">
+              <select>
+                <option value=""></option>
+                <option value="1">한칸</option>
+                <option value="2">1.5칸</option>
+                <option value="3">2칸</option>
+              </select>
+              <label>방 구조</label>
+            </div>
+          </div>
+
+          <%# size %>
+          <%= label_tag :size, "방 평수" %>
+          <%= number_field_tag :size %>
+
+          <%# level %>
+          <div class="row">
+            <div class="input-field col s12">
+              <select>
+                <option value=""></option>
+                <option value="1">B1</option>
+                <option value="2">반지하</option>
+                <option value="3">1층</option>
+                <option value="4">2층</option>
+                <option value="5">3층</option>
+                <option value="6">4층</option>
+                <option value="7">5층</option>
+                <option value="8">6층</option>
+                <option value="9">7층</option>
+                <option value="10">8층</option>
+                <option value="11">9층</option>
+                <option value="12">10층</option>
+                <option value="13">11층</option>
+                <option value="14">12층</option>
+                <option value="15">13층</option>
+                <option value="16">14층</option>
+                <option value="17">15층</option>
+                <option value="18">16층</option>
+                <option value="19">17층</option>
+                <option value="20">18층</option>
+                <option value="21">19층</option>
+                <option value="22">20층</option>
+              </select>
+              <label>층수</label>
+            </div>
+          </div>
+
+          <%# elevator %>
+          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "엘리베이터 여부" %></div>
+          <div class="row">
+            <div class="col l6">
+              <%= radio_button_tag :elevator, :true, false, class: "with-gap" %>
+              <%= label_tag :elevator_true, "YES" %>
+            </div>
+            <div class="col l6">
+              <%= radio_button_tag :elevator, :false, false, class: "with-gap" %>
+              <%= label_tag :elevator_false, "NO" %>
+            </div>
+          </div>
+
+          <%# parking %>
+          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "주차공간 여부" %></div>
+          <div class="row">
+            <div class="col l6">
+              <%= radio_button_tag :parking, :true, false, class: "with-gap" %>
+              <%= label_tag :parking_true, "YES" %>
+            </div>
+            <div class="col l6">
+              <%= radio_button_tag :parking, :false, false, class: "with-gap" %>
+              <%= label_tag :parking_false, "NO" %>
+            </div>
+          </div>
+
+          <%# options %>
+          <%= label_tag :option, "옵션" %>
+          <%= text_area_tag :option, nil, class: "materialize-textarea" %>
+          
+          <%# descriptions %>
+          <%= label_tag :description, "상세설명" %>
+          <%= text_area_tag :description, nil, class: "materialize-textarea" %>
+
+          <%# images (up to 5) %>
           <% (1..5).each do |i| %>
-          <%= label_tag "image#{i}", "Image#{i}" %>
+          <%= label_tag "image#{i}", "이미지 #{i}" %>
           <div class="file-field input-field" style="margin-top:5px;">
             <div class="btn" style="padding-top:0px;">Image<%= file_field_tag "image#{i}" %></div>
             <div class="file-path-wrapper">
@@ -123,7 +173,7 @@
             </div>
           </div>
           <% end %>
-          
+
           <%= submit_tag '올리기', class: "btn vert-margined-20", style: "width:100%;" %>
         <% end %>
       </div>
@@ -147,10 +197,8 @@
         if (status === google.maps.GeocoderStatus.OK) {
           var location = results[0].geometry.location;
   
-          $('#query_id_lnglat').val(results[0].formatted_address);
-  
+          $('#address').val(results[0].formatted_address);
           console.log(results);
-  
           map.setCenter(location);
           marker.setPosition(location);
           update_field(location);
@@ -185,45 +233,43 @@
         update_field(e.latLng);
       });
   
-      google.maps.event.addListener(marker, 'drag_end', function(e) {
-        // !!!
-      });
+      google.maps.event.addListener(marker, 'drag_end', function(e) {});
   
       $("#query_submit_id_lnglat").click(function(e) {
-        var q = $('#query_id_lnglat').val();
+        var q = $('#address').val();
         geocodeAddress(q);
         return false;
       });
+
+      var alerted = false;
+      $(document).ready(function(){
+        var address = $('#id_address').val();
+        $('#map_search').children('input').val(address);
+
+        $('#map_search').children('input').click(function(){
+          var address = $('#id_address').val();
+          $(this).val(address);
+          if(!alerted) {
+            alert('검색 버튼을 꼭 눌러서 확인해주세요');
+            alerted = true;
+          }
+        });
+
+        $('input:checked').parent().css('background-color', '#aaa');
+
+        function selectedRadioColor(radioInput){
+          $(radioInput).on('change', function() {
+            $(radioInput).parent().css('background-color', 'white');
+            $(this).parent().css('background-color', '#aaa');
+          });
+        };
+
+        $('select').material_select();
+        $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+      });
     });
   })(jQuery);
-  
-  var alerted = false;
-  $(document).ready(function(){
-    var address = $('#id_address').val();
-    $('#map_search').children('input').val(address);
-  
-    $('#map_search').children('input').click(function(){
-      var address = $('#id_address').val();
-      $(this).val(address);
-      if(!alerted) {
-        alert('검색 버튼을 꼭 눌러서 확인해주세요');
-        alerted = true;
-      }
-    });
-  
-    $('input:checked').parent().css('background-color', '#aaa');
-  
-    function selectedRadioColor(radioInput){
-      $(radioInput).on('change', function() {
-        $(radioInput).parent().css('background-color', 'white');
-        $(this).parent().css('background-color', '#aaa');
-      });
-    };
-    
-    $('select').material_select();
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-  });
 </script>

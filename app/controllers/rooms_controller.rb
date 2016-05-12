@@ -11,6 +11,7 @@ class RoomsController < ApplicationController
 
   # CRUD
   def create
+    raise "#{params.inspect}"
     redirect_to "/"
   end
 

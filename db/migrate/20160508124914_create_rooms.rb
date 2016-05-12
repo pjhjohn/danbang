@@ -13,8 +13,8 @@ class CreateRooms < ActiveRecord::Migration
       
       # location
       t.string :address,        null: false, default:""
-      t.integer :lat,           null: false, default: 0
-      t.integer :lng,           null: false, default: 0
+      t.float :lat,             null: false, default: 0
+      t.float :lng,             null: false, default: 0
       
       # information for filter
       t.integer :location,      null: false
@@ -24,7 +24,7 @@ class CreateRooms < ActiveRecord::Migration
       # other informations to show
       t.integer :insurance_pay, null: false, default: 0
       t.integer :admin_pay,     null: false, default: 0
-      t.integer :type,     null: false
+      t.integer :room_type,     null: false
       t.integer :story,         null: false
       t.integer :size,          null: false
       t.boolean :parking,       null: false

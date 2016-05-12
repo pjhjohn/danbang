@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# Image uploader aws-s3 binding
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-aws'
+# Devise
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

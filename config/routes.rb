@@ -1,21 +1,18 @@
 Rails.application.routes.draw do
-  post 'rooms/create'
-
-  post 'rooms/update'
-
-  post 'rooms/delete'
-
-  get 'rooms/new'
-
-  get 'rooms/edit'
-
-  get 'rooms' => "rooms#index"
-
-  get 'home/index'
-
   root 'home#index'
 
+  get 'rooms'                 => "rooms#index"
+  get 'rooms/:room_id'        => 'rooms#detail',  :constraints => { :room_id => /\d+/ }
+  get 'rooms/new'             => 'rooms#new'
+  get 'rooms/edit/:room_id'   => 'rooms#edit',    :constraints => { :room_id => /\d+/ }
+  get 'rooms/remove/:room_id' => 'rooms#remove',  :constraints => { :room_id => /\d+/ }
+
+  post 'rooms/create' => 'rooms#create'
+  post 'rooms/update' => 'rooms#update'
+  post 'rooms/delete' => 'rooms#delete'
+
   devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

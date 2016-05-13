@@ -24,7 +24,7 @@
           <%# location %>
           <div class="row">
             <div class="input-field col s12">
-              <select>
+              <select data-name="location">
                 <option value=""></option>
                 <option value="1">서울대입구</option>
                 <option value="2">낙성대</option>
@@ -83,7 +83,7 @@
           <%# room_type %>
           <div class="row">
             <div class="input-field col s12">
-              <select>
+              <select data-name="room_type">
                 <option value=""></option>
                 <option value="1">한칸</option>
                 <option value="2">1.5칸</option>
@@ -93,14 +93,14 @@
             </div>
           </div>
 
-          <%# size %>
-          <%= label_tag :size, "방 평수" %>
-          <%= number_field_tag :size %>
+          <%# room_size %>
+          <%= label_tag :room_size, "방 평수" %>
+          <%= number_field_tag :room_size %>
 
-          <%# level %>
+          <%# room_floor %>
           <div class="row">
             <div class="input-field col s12">
-              <select>
+              <select data-name="room_floor">
                 <option value=""></option>
                 <option value="1">B1</option>
                 <option value="2">반지하</option>
@@ -156,12 +156,21 @@
           </div>
 
           <%# options %>
-          <%= label_tag :option, "옵션" %>
-          <%= text_area_tag :option, nil, class: "materialize-textarea" %>
+          <%= label_tag :options, "옵션" %>
+          <%= text_area_tag :options, nil, class: "materialize-textarea" %>
           
           <%# descriptions %>
           <%= label_tag :description, "상세설명" %>
           <%= text_area_tag :description, nil, class: "materialize-textarea" %>
+
+          <%# representative image %>
+          <%= label_tag :representative, "대표 이미지" %>
+          <div class="file-field input-field" style="margin-top:5px;">
+            <div class="btn" style="padding-top:0px;">Image<%= file_field_tag :representative %></div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
 
           <%# images (up to 5) %>
           <% (1..5).each do |i| %>
@@ -242,33 +251,37 @@
       });
 
       var alerted = false;
-      $(document).ready(function(){
+      var address = $('#id_address').val();
+      $('#map_search').children('input').val(address);
+
+      $('#map_search').children('input').click(function(){
         var address = $('#id_address').val();
-        $('#map_search').children('input').val(address);
+        $(this).val(address);
+        if(!alerted) {
+          alert('검색 버튼을 꼭 눌러서 확인해주세요');
+          alerted = true;
+        }
+      });
 
-        $('#map_search').children('input').click(function(){
-          var address = $('#id_address').val();
-          $(this).val(address);
-          if(!alerted) {
-            alert('검색 버튼을 꼭 눌러서 확인해주세요');
-            alerted = true;
-          }
+      $('input:checked').parent().css('background-color', '#aaa');
+
+      function selectedRadioColor(radioInput){
+        $(radioInput).on('change', function() {
+          $(radioInput).parent().css('background-color', 'white');
+          $(this).parent().css('background-color', '#aaa');
         });
+      };
 
-        $('input:checked').parent().css('background-color', '#aaa');
+      $('select').material_select();
+      $('select').each(function(item){
+        var name = $(this).data('name');
+        var target = $(this).parent().find('input');
+        target.attr('name', name);
+      });
 
-        function selectedRadioColor(radioInput){
-          $(radioInput).on('change', function() {
-            $(radioInput).parent().css('background-color', 'white');
-            $(this).parent().css('background-color', '#aaa');
-          });
-        };
-
-        $('select').material_select();
-        $('.datepicker').pickadate({
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 15 // Creates a dropdown of 15 years to control year
-        });
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
       });
     });
   })(jQuery);

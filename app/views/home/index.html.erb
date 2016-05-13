@@ -1,30 +1,26 @@
 <link href="//cdn2.hubspot.net/hubfs/514770/css/strap.css?t=1462536216307" rel="stylesheet">
-<% unless user_signed_in? %>
+
 <div class="main-content full blog blog-new">
   <div class="content">
     <div class="sections">
-      <span id="hs_cos_wrapper_slider_hero" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget" style="" data-hs-cos-general-type="widget" data-hs-cos-type="custom_widget"><div class="slider">
-        <ul class="slides">
-          <li>
-            <img src="//cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=2000&amp;height=800" width="2000" height="800" alt="slide1.jpeg" srcset="//cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=1000&amp;height=400 1000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=2000&amp;height=800 2000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=3000&amp;height=1200 3000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=4000&amp;height=1600 4000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=5000&amp;height=2000 5000w, //cdn2.hubspot.net/hub/514770/hubfs/img/slides/bg-integration.jpg?t=1462536216307&amp;width=6000&amp;height=2400 6000w" sizes="(max-width: 2000px) 100vw, 2000px">
-              <!-- random image -->
-              <div class="caption left-align">
-                <div class="full left">
-                  <div class="row">
-                    <div class="col-xs-6 col-sm-3 col-xs-offset-3 col-sm-offset-0 col-md-3 col-lg-4">
-                      <img src="//cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=600&amp;height=475" width="600" height="475" alt="Sleep and Activity Engagement" srcset="//cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=300&amp;height=238 300w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=600&amp;height=475 600w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=900&amp;height=713 900w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=1200&amp;height=950 1200w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=1500&amp;height=1188 1500w, //cdn2.hubspot.net/hub/514770/hubfs/img/benefit-realtime.png?t=1462536216307&amp;width=1800&amp;height=1425 1800w" sizes="(max-width: 600px) 100vw, 600px">
-                    </div>
-                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-8">
-                      <h1>다양한 단기원룸을 만나보세요</h1>
-                      <p><a href="#target">더 만나보기</a></p>
-                    </div>
-                  </div>
-                </div>
+      <section id="features" class="scrollspy dark-text" style="height:600px;">
+        <div class="container relative z-index-5">
+          <div class="row">
+            <center style="position:absolute;">
+              <img src="http://placehold.it/1500x600?text=Main Placeholder">
+            </center>
+            <center style="position:absolute;">
+              <div class="col-xs-6 col-sm-3 col-xs-offset-3 col-sm-offset-0 col-md-3 col-lg-4">
+                <img src="http://placehold.it/400x400?text=LOGOTHINGS">
               </div>
-            </li>
-          </ul>
+              <div class="col-xs-12 col-sm-9 col-md-9 col-lg-8">
+                <h1>다양한 단기원룸을 만나보세요</h1>
+                <p><a href="#target">더 만나보기</a></p>
+              </div>
+            </center>
+          </div>
         </div>
-      </span>
+      </section>
       <section id="features" class="scrollspy dark-text">
         <div class="container relative z-index-5">
           <div class="row">
@@ -64,15 +60,26 @@
         <div class="container">
           <div class="row vert-margined-20">
             <div class="horiz-padded-2 full left listing-title">
-              <a class="vert-margined right btn btn-secondary waves-effect" href="/rooms">모두 보기</a>
+              <% unless @rooms_oneroom.empty? %>
+              <a class="vert-margined right btn btn-secondary waves-effect" href="/users_sign_in">모두 보기</a>
+              <% end %>
               <h2 class="vert-margined">단기입주 가능한 원룸/오피스텔</h2>
               <p id="target" class="scrollspy">단기입주 위주의 원룸과 오피스텔 목록입니다</p>
             </div>
+            <% if @rooms_oneroom.empty? %>
+            <div class="row">
+              <center>
+                <h3>원룸/오피스텔 매물이 없습니다</h3>
+                <a href="/users_sign_in">매물 등록하러 가기</a>
+              </center>
+            </div>
+            <% else %>
             <div class="post-listing">
-              <% (1..6).each do |i| %>
-                <%= render partial: "post" %>
+              <% @rooms_oneroom.each do |room| %>
+                <%= render partial: "partials/room", :locals => {:room => room} %>
               <% end %>
             </div>
+            <% end %>
           </div>
         </div>
       </section>
@@ -80,45 +87,32 @@
         <div class="container">
           <div class="row vert-margined-20">
             <div class="horiz-padded-2 full left listing-title">
-              <a class="vert-margined right btn btn-secondary waves-effect" href="/users/sign_in">모두 보기</a>
+              <% unless @rooms_oneroom.empty? %>
+              <a class="vert-margined right btn btn-secondary waves-effect" href="/users_sign_in">모두 보기</a>
+              <% end %>
               <h2 class="vert-margined">단기 전대차 매물</h2>
               <p class="">반년 이하의 단기 전대차 매물이 올라오는 곳입니다</p>
             </div>
+            <% if @rooms_not_oneroom.empty? %>
+            <div class="row">
+              <center>
+                <h3>전대차 매물이 없습니다</h3>
+                <a href="/users_sign_in">매물 등록하러 가기</a>
+              </center>
+            </div>
+            <% else %>
             <div class="post-listing">
-              <% (1..6).each do |i| %>
-                <%= render partial: "post" %>
+              <% @rooms_not_oneroom.each do |room| %>
+                <%= render partial: "partials/room", :locals => {:room => room} %>
               <% end %>
             </div>
+            <% end %>
           </div>
         </div>
       </section>
     </div>
   </div>
 </div>
-<% else %>
-<div class="main-content full blog blog-new">
-  <div class="content">
-    <div class="sections">
-      <section id="contracts" class="scrollspy gray-02-bg">
-        <div class="container">
-          <div class="row vert-margined-20">
-            <div class="horiz-padded-2 full left listing-title">
-              <a class="vert-margined right btn btn-secondary waves-effect" href="/users/sign_in">모두 보기</a>
-              <h2 class="vert-margined">단기입주 가능한 원룸/오피스텔</h2>
-              <p id="target" class="scrollspy">단기입주 위주의 원룸과 오피스텔 목록입니다</p>
-            </div>
-            <div class="post-listing">
-              <% (1..6).each do |i| %>
-                <%= render partial: "post" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-<% end %>
 
 <footer class="strap-footer full left">
   <div class="container text-white">

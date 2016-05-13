@@ -26,11 +26,20 @@
               <% end %>
             </center>
             <hr/>
+            <% if @rooms.empty? %>
+            <div class="row">
+              <center>
+                <h3>해당하는 매물이 없습니다</h3>
+                <a href="/rooms/new">매물 등록하러 가기</a>
+              </center>
+            </div>
+            <% else %>
             <div class="post-listing">
-              <% (1..6).each do |i| %>
-                <%= render partial: "home/post" %>
+              <% @rooms.each do |room| %>
+                <%= render partial: "partials/room", locals: {room: room} %>
               <% end %>
             </div>
+            <% end %>
             <center><span>pagination placeholder</span></center>
           </div>
         </div>

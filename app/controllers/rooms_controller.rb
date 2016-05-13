@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @filter_is_oneroom      = params[:filter_is_oneroom     ] || true
     @filter_location        = params[:filter_location       ] || 1
@@ -8,6 +10,7 @@ class RoomsController < ApplicationController
     @filter_in_date         = DateTime.parse(params[:filter_in_date ] || "2010-01-01 00:00:00")
     @filter_out_date        = DateTime.parse(params[:filter_out_date] || "2020-12-31 23:59:59")
     @rooms = Room
+      .where(deleted: false)
       .where(is_oneroom: @filter_is_oneroom)
       .where(is_male:    @filter_is_male)
       .where(location:   @filter_location)
@@ -99,7 +102,20 @@ class RoomsController < ApplicationController
 
   def delete
     room = Room.find_by_id(params[:room_id])
-    room.destroy unless room.nil?
+    unless room.nil?
+      room.deleted = true
+      room.completed = false
+      room.save
+    end
+    redirect_to "/"
+  end
+  def complete
+    room = Room.find_by_id(params[:room_id])
+    unless room.nil?
+      room.deleted = true
+      room.completed = true
+      room.save
+    end
     redirect_to "/"
   end
 end

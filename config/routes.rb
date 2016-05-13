@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   post 'rooms/create' => 'rooms#create'
   post 'rooms/update' => 'rooms#update'
-  post 'rooms/delete' => 'rooms#delete'
+  get 'rooms/delete/:room_id' => 'rooms#delete'
+  get 'rooms/complete/:room_id' => 'rooms#complete'
 
   devise_for :users
 

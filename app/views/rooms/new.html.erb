@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col l6 offset-l3 m12">
         <center>
-          <h3>새 방 등록하기</h3>
+          <h3>매물 등록하기</h3>
         </center>
 
         <%= form_tag '/rooms/create', multipart: true do %>
@@ -85,9 +85,9 @@
             <div class="input-field col s12">
               <select data-name="room_type">
                 <option value=""></option>
-                <option value="1">한칸</option>
-                <option value="2">1.5칸</option>
-                <option value="3">2칸</option>
+                <option value="1">원룸</option>
+                <option value="2">1.5룸</option>
+                <option value="3">투칸</option>
               </select>
               <label>방 구조</label>
             </div>
@@ -102,7 +102,7 @@
             <div class="input-field col s12">
               <select data-name="room_floor">
                 <option value=""></option>
-                <option value="1">B1</option>
+                <option value="1">지하1층</option>
                 <option value="2">반지하</option>
                 <option value="3">1층</option>
                 <option value="4">2층</option>

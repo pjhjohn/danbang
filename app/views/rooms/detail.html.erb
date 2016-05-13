@@ -1,0 +1,132 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<% if @room.nil? %>
+<div class="main-content full">
+  <div class="container" style="min-height:768px;">
+    <h1>마 아직 등록도 안했다</h1>
+  </div>
+</div>
+<% elsif @room.deleted %>
+<div class="main-content full">
+  <div class="container" style="min-height:768px;">
+    <h1>걱정마라 삭제는 눈보다 빠르니까</h1>
+  </div>
+</div>
+<% else %>
+<div class="main-content full">
+  <div class="container" style="min-height:768px;">
+    <div class="row">
+      <center>
+        <h3>매물이요 여따뭐넣지?</h3>
+        <hr>
+      </center>
+    </div>
+    <div class="row">
+      <%# Left Pane : Carousel & Information Table %>
+      <div class="col l6">
+        <div class="row">
+          <img src="<%= @room.representative %>" style="width:100%"/>
+        </div>
+      </div>
+      
+      <%# Right Pane : Map & Button(Edit/Remove/Message) %>
+      <div class="col offset-l1 l5">
+        <div class="row">
+          <center>
+            <h5><%= @room.address %></h5>
+          </center>
+        </div>
+        <div id="map" class="row" style="height:300px;">
+          
+        </div>
+        <div class="row">
+          <a href="#" class="btn blue lighten-2 col m4 disabled">메세지 보내기</a>
+          <a href="/rooms/edit/<%= @room.id %>" class="btn col offset-m1 m3">수정</a>
+          <a href="/rooms/remove/<%= @room.id %>" class="btn red lighten-2 col offset-m1 m3">삭제</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l12">
+        <h4>매물 정보</h4>
+      </div>
+      <div class="col l6">
+        <table class="striped centered">
+          <tbody>
+            <tr>
+              <td>보증금</td>
+              <td><%= @room.insurance_pay %>만원</td>
+            </tr>
+            <tr>
+              <td>월세</td>
+              <td><%= @room.monthly_pay %>만원</td>
+            </tr>
+            <tr>
+              <td>관리비</td>
+              <td><%= @room.admin_pay %>만원</td>
+            </tr>
+            <tr>
+              <td>층수</td>
+              <td><%= room_floor_str(@room) %></td>
+            </tr>
+            <tr>
+              <td>주차</td>
+              <td><%="불" unless @room.parking %>가능</td>
+            </tr>
+            <tr>
+              <td>옵션</td>
+              <td><%= @room.options %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col l6">
+        <table class="striped centered">
+          <tbody>
+            <tr>
+              <td>위치</td>
+              <td><%= location_str(@room) %></td>
+            </tr>
+            <tr>
+              <td>방 구조</td>
+              <td><%= room_type_str(@room) %>만원</td>
+            </tr>
+            <tr>
+              <td>관리비 포함항목</td>
+              <td><%= @room.admin_options %></td>
+            </tr>
+            <tr>
+              <td>엘리베이터</td>
+              <td><%="불" unless @room.elevator %>가능</td>
+            </tr>
+            <tr>
+              <td>계약가능기간</td>
+              <td><%= @room.in_date %> ~ <%= @room.out_date %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    var map;
+    var marker;
+    
+    var map_dom_element = $('#map')[0];
+    var center = new google.maps.LatLng(<%= @room.lat %>, <%= @room.lng %>);
+    var options = {
+      zoom: 15,
+      center: center
+    }
+  
+    map = new google.maps.Map(map_dom_element, options);
+  
+    marker = new google.maps.Marker({
+      map: map,
+      position: center,
+      draggable: true
+    });
+  });
+</script>
+<% end %>

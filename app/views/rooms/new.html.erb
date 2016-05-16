@@ -1,4 +1,3 @@
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <div class="main-content full">
   <div class="container" style="min-height:768px;">
     <div class="row">
@@ -7,7 +6,7 @@
           <h3>매물 등록하기</h3>
         </center>
 
-        <%= form_tag '/rooms/create', multipart: true do %>
+        <%= form_tag '/rooms/create', id: 'form', multipart: true do %>
           <%# is_oneroom %>
           <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "전대차 여부" %></div>
           <div class="row">
@@ -25,7 +24,7 @@
           <div class="row">
             <div class="input-field col s12">
               <select data-name="location">
-                <option value=""></option>
+                <option value="" disabled selected></option>
                 <option value="1">서울대입구</option>
                 <option value="2">낙성대</option>
                 <option value="3">고시촌(녹두)</option>
@@ -42,31 +41,47 @@
             <div class="col s9">
               <%= text_field_tag :address, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
             </div>
-            <div class="s3">
+            <div class="col s3">
               <center>
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button" id="query_submit_id_lnglat">검색</button>
+                  <button class="btn btn-default" type="button" id="btn_address">검색</button>
                 </span>
               </center>
             </div>
-            <div id="map_canvas_id_lnglat" class="col s12" style="height: 300px;margin: 0px 11.25px">map loading ...</div>
           </div>
+          <div id="map_canvas_id_lnglat" class="row" style="height: 300px;margin:-20px 0 0 0">map loading ...</div>
 
           <%# insurance_pay %>
-          <%= label_tag :insurance_pay, "보증금" %>
-          <%= number_field_tag :insurance_pay %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :insurance_pay, "보증금" %>
+              <%= number_field_tag :insurance_pay %>
+            </div>
+          </div>
 
           <%# monthly_pay %>
-          <%= label_tag :monthly_pay, "월세" %>
-          <%= number_field_tag :monthly_pay %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :monthly_pay, "월세" %>
+              <%= number_field_tag :monthly_pay %>
+            </div>
+          </div>
 
           <%# admin_pay %>
-          <%= label_tag :admin_pay, "관리비" %>
-          <%= number_field_tag :admin_pay %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :admin_pay, "관리비" %>
+              <%= number_field_tag :admin_pay %>
+            </div>
+          </div>
 
           <%# admin_option %>
-          <%= label_tag :admin_options, "관리비 포함항목" %>
-          <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :admin_options, "관리비 포함항목" %>
+              <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
+            </div>
+          </div>
 
           <%# in&out date %>
           <div class="row">
@@ -84,7 +99,7 @@
           <div class="row">
             <div class="input-field col s12">
               <select data-name="room_type">
-                <option value=""></option>
+                <option value="" disabled selected></option>
                 <option value="1">원룸</option>
                 <option value="2">1.5룸</option>
                 <option value="3">투칸</option>
@@ -94,14 +109,18 @@
           </div>
 
           <%# room_size %>
-          <%= label_tag :room_size, "방 평수" %>
-          <%= number_field_tag :room_size %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :room_size, "방 평수" %>
+              <%= number_field_tag :room_size %>
+            </div>
+          </div>
 
           <%# room_floor %>
           <div class="row">
             <div class="input-field col s12">
               <select data-name="room_floor">
-                <option value=""></option>
+                <option value="" disabled selected></option>
                 <option value="1">지하1층</option>
                 <option value="2">반지하</option>
                 <option value="3">1층</option>
@@ -156,12 +175,20 @@
           </div>
 
           <%# options %>
-          <%= label_tag :options, "옵션" %>
-          <%= text_area_tag :options, nil, class: "materialize-textarea" %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :options, "옵션" %>
+              <%= text_area_tag :options, nil, class: "materialize-textarea" %>
+            </div>
+          </div>
           
           <%# descriptions %>
-          <%= label_tag :description, "상세설명" %>
-          <%= text_area_tag :description, nil, class: "materialize-textarea" %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= label_tag :description, "상세설명" %>
+              <%= text_area_tag :description, nil, class: "materialize-textarea" %>
+            </div>
+          </div>
 
           <%# representative image %>
           <%= label_tag :representative, "대표 이미지" %>
@@ -183,14 +210,18 @@
           </div>
           <% end %>
 
-          <%= submit_tag '올리기', class: "btn vert-margined-20", style: "width:100%;" %>
+          <%= submit_tag '올리기', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <script>
-  (function($) {
+  // (function($) {
+  $(document).ready(function() {
+    // Geocod Mapper
     var map;
     var marker;
     var geocoder;
@@ -201,88 +232,110 @@
       console.log("latitude :", $('#lat').val(), "longitude :", $('#lng').val());
     };
   
-    function geocodeAddress(address) {
+    var geocode_address = function(address) {
       geocoder.geocode({'address': address}, function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
           var location = results[0].geometry.location;
-  
           $('#address').val(results[0].formatted_address);
           console.log(results);
           map.setCenter(location);
           marker.setPosition(location);
           update_field(location);
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
+        } else alert('Geocode was not successful for the following reason: ' + status);
       });
-  
     }
-  
-    $(document).ready(function() {
-      var map_dom_element = $("#map_canvas_id_lnglat")[0];
-      var center = new google.maps.LatLng(37.497921, 127.027636);
-      var options = {
-        zoom: 15,
-        center: center
-      };
-  
-      map = new google.maps.Map(map_dom_element, options);
-      geocoder = new google.maps.Geocoder();
-  
-      marker = new google.maps.Marker({
-        map: map,
-        position: center,
-        draggable: true
-      });
-  
-      update_field(center);
-  
-      google.maps.event.addListener(map, "click", function(e) {
-        marker.setPosition(e.latLng);
-        update_field(e.latLng);
-      });
-  
-      google.maps.event.addListener(marker, 'drag_end', function(e) {});
-  
-      $("#query_submit_id_lnglat").click(function(e) {
-        var q = $('#address').val();
-        geocodeAddress(q);
-        return false;
-      });
 
-      var alerted = false;
-      var address = $('#id_address').val();
-      $('#map_search').children('input').val(address);
+    var map_dom_element = $("#map_canvas_id_lnglat")[0];
+    var center = new google.maps.LatLng(37.497921, 127.027636);
+    var options = {
+      zoom: 15,
+      center: center
+    };
 
-      $('#map_search').children('input').click(function(){
-        var address = $('#id_address').val();
-        $(this).val(address);
-        if(!alerted) {
-          alert('검색 버튼을 꼭 눌러서 확인해주세요');
-          alerted = true;
+    map = new google.maps.Map(map_dom_element, options);
+    geocoder = new google.maps.Geocoder();
+    marker = new google.maps.Marker({
+      map: map,
+      position: center,
+      draggable: true
+    });
+
+    update_field(center);
+
+    google.maps.event.addListener(map, "click", function(e) {
+      marker.setPosition(e.latLng);
+      update_field(e.latLng);
+    });
+
+    $("#btn_address").click(function(e) {
+      geocode_address($('#address').val());
+      return false;
+    });
+    // Input Control
+    var validate_form = function(form) {
+      // Form Validation
+      return form.validate({
+        rules: {
+          is_oneroom:    "required",
+          location:      { required: true },
+          lat:           { required: true },
+          lng:           { required: true },
+          address:       { required: true },
+          insurance_pay: { required: true },
+          monthly_pay:   { required: true },
+          admin_pay:     { required: true },
+          in_date:       { required: true },
+          out_date:      { required: true },
+          room_type:     { required: true },
+          room_size:     { required: true },
+          room_floor:    { required: true },
+          elevator:      { required: true },
+          parking:       { required: true },
+        },
+        errorElement: 'div',
+        errorPlacement: function(error, element) {
+          console.log(element);
+          var placement = $(element).data('error');
+          console.log(placement);
+          error.css('color', 'red');
+          error.css('font-size', '12px');
+          error.css('margin-top', '-20px');
+          error.css('margin-bottom', '10px');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element.closest('div.row'));
+          }
         }
       });
-
-      $('input:checked').parent().css('background-color', '#aaa');
-
-      function selectedRadioColor(radioInput){
-        $(radioInput).on('change', function() {
-          $(radioInput).parent().css('background-color', 'white');
-          $(this).parent().css('background-color', '#aaa');
-        });
-      };
-
-      $('select').material_select();
-      $('select').each(function(item){
-        var name = $(this).data('name');
-        var target = $(this).parent().find('input');
-        target.attr('name', name);
-      });
-
-      $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-      });
+    }
+    $("input").keypress(function(event) {
+      if(event.which == 13) {
+        if($("#address").is(':focus')) {
+          event.preventDefault();
+          geocode_address($('#address').val());
+        } else {
+          if (!validate_form($('#form'))) event.preventDefault();
+        }
+      } else return;
     });
-  })(jQuery);
+
+    $("#form-submit").click(function(e) {
+      if (!validate_form($('#form'))) event.preventDefault();
+    });
+
+    // MaterializeCSS
+    $('select').material_select();
+    $('select').each(function(item){
+      var name = $(this).data('name');
+      var target = $(this).parent().find('input');
+      target.attr('name', name);
+    });
+
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+  });
+  // })(jQuery);
 </script>

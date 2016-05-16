@@ -3,23 +3,28 @@
   <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
       <a href="/rooms/<%= room.id %>">
-        <div class="card-image-bg" style="background-image:url('<%= room.image1 %>');"></div>
+        <div class="card-image-bg" style="background-image:url('<%= room.representative %>');"></div>
       </a>
     </div>
     <div class="card-content">
-      <span class="card-title grey-text text-darken-4"><i class="activator icon-share right"></i><a href="//www.straphq.com/resources/mhealth-data-is-not-enough"><span class="">제목</span></a>
+      <span class="card-title grey-text text-darken-4">
+        <i class="activator icon-add right"></i>
+        <a href="/rooms/<%= room.id %>"><span class=""><%= location_str(room) %> <%= is_oneroom_str(room) %></span></a>
       </span>
-      <!-- <p><a class="btn-primary btn waves-effect" href="https://www.straphq.com/resources/mhealth-data-is-not-enough">Read More</a></p> -->
     </div>
     <div class="card-action">
-      <a class="author-link tooltipped" data-position="bottom" data-delay="20" data-tooltip="Steve Caldwell" href="//www.straphq.com/resources/author/steve-caldwell">
-        <div class="hs-author-avatar"> <img class="circle" src="//cdn2.hubspot.net/hubfs/514770/img/team/steve-125.png?t=1462536216307"> </div>
-      </a>
-      <span class="center byline truncate">부가정보<a class="topic-name" href="/topic/Blog">Blog</a></span>
-      <a class="btn btn-primary waves-effect" href="//www.straphq.com/resources/mhealth-data-is-not-enough">상세정보</a>
+      <span class="center byline truncate">월 <%= room.monthly_pay%>만원<%= room.admin_pay > 0? " (관리비 #{room.admin_pay}만원)" : " (관리비 포함)" %></span>
+      <a class="btn btn-primary waves-effect" href="/rooms/<%= room.id %>">상세정보</a>
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">여기에 약식 추가정보를 넣고싶으면 넣을 수 있을 듯<i class="icon-close right"></i></span>
+      <span class="card-title grey-text text-darken-4">
+        <i class="icon-close right"></i>
+        <%= simple_format("
+          월세 : #{room.monthly_pay} 만원
+          관리비 : #{room.admin_pay} 만원
+          보험금 : #{room.insurance_pay} 만원
+        ")%>
+      </span>
       <p><span id="hs_cos_wrapper_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_blog_social_sharing" style="" data-hs-cos-general-type="widget" data-hs-cos-type="blog_social_sharing">
       </span></p>
       <div class="hs-blog-social-share">

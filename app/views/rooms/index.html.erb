@@ -3,29 +3,53 @@
   <div class="content">
     <div class="sections">
       <section class="gray-02-bg">
-        <div class="container">
+          <div class="container" style="min-height:768px;">
           <div class="row vert-margined-20">
             <center>
               <div class="horiz-padded-2 full left listing-title">
-                <h2 class="vert-margined">방 리스트</h2>
-                <p id="target" class="scrollspy">필터를 쒜낏쒜낏</p>
+                <h2 class="vert-margined">매물 리스트</h2>
+                <!--<p id="target" class="scrollspy">필터를 쒜낏쒜낏</p>-->
               </div>
-              <div id="filter" class="vert-margined-20">
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @location == "1" %>" data-filter-type="location" data-value="1" href="#">서울대입구</a>
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @location == "2" %>" data-filter-type="location" data-value="2" href="#">낙성대</a>
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @location == "3" %>" data-filter-type="location" data-value="3" href="#">고시촌(녹두)</a>
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @gender == "male" %>" data-filter-type="gender" data-value="male" href="#">남성</a>
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @gender == "female" %>" data-filter-type="gender" data-value="female" href="#">여성</a>
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @is_oneroom == "true" %>" data-filter-type="is_oneroom" data-value="true" href="#">원룸/오피스텔</a>
-                <a class="vert-margined btn btn-secondary waves-effect<%= " btn-selected" if @is_oneroom == "false" %>" data-filter-type="is_oneroom" data-value="false" href="#">전대차</a>
+              <div class="row">
+                <%= form_tag '/rooms', id: 'form', method: 'get', multipart: true do %>
+                <%# is_oneroom %>
+                <div class="input-field col s2">
+                  <select data-name="filter_is_oneroom">
+                    <option value="" disabled selected>전대차 여부</option>
+                    <option value="1">원룸/오피스텔</option>
+                    <option value="2">전대차</option>
+                  </select>
+                </div>
+                <%# location %>
+                <div class="input-field col s2">
+                  <select data-name="filter_location">
+                    <option value="" disabled selected>위치</option>
+                    <option value="1">서울대입구</option>
+                    <option value="2">낙성대</option>
+                    <option value="3">고시촌(녹두)</option>
+                  </select>
+                </div>
+                <%# monthly_pay %>
+                <div class="input-field col s1">
+                  <%= number_field_tag :filter_monthly_pay_min %>
+                </div>
+                <div class="input-field col s1">
+                  <%= number_field_tag :filter_monthly_pay_max %>
+                </div>
+                <%# in&out date %>
+                <div class="input-field col s2">
+                  <%= date_field_tag :filter_in_date, nil, class: "datepicker" %>
+                </div>
+                <div class="input-field col s2">
+                  <%= date_field_tag :filter_out_date, nil, class: "datepicker" %>
+                </div>
+                <div class="col s2">
+                  <%= submit_tag '필터 적용', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
+                </div>
+                <% end %>
               </div>
-              <%= form_tag '/rooms', id: "filter-form", method: 'get', multipart: true do %>
-                <%= hidden_field_tag :location, nil, id: "filter-form-location" %>
-                <%= hidden_field_tag :gender, nil, id: "filter-form-gender" %>
-                <%= hidden_field_tag :is_oneroom, nil, id: "filter-form-is_oneroom" %>
-              <% end %>
             </center>
-            <hr/>
+            <hr>
             <% if @rooms.empty? %>
             <div class="row">
               <center>
@@ -53,7 +77,7 @@
     <div class="row">
       <div class="full left">
         <div class="col s12 m8">
-          <p class="small full source-org copyright">© 2016 Strap. Made with <i class="icon-favorite"></i> in Cincinnati, OH. <a class="horiz-margined" href="/terms">Terms</a><a class="horiz-margined" href="/privacy">Privacy Policy</a></p>
+          <p class="small full source-org copyright">Made by <a href="http://mrl.snu.ac.kr/~pjhjohn">[JoonHo Park]</a><a class="horiz-margined" href="/terms">Terms</a><a class="horiz-margined" href="/privacy">Privacy Policy</a></p>
         </div>
         <div class="col s12 m4 text-right">
           <h3>
@@ -66,19 +90,17 @@
 </footer>
 
 <script>
-  $(document).ready(function(){
-    // register form from selected
-    $('#filter>a.btn-selected').each(function(index, item) {
-      $('#filter-form>'+'#filter-form-'+$(item).data('filter-type')).val($(item).data('value'));
+  $(document).ready(function() {
+    $('select').material_select();
+    $('select').each(function(item){
+      var name = $(this).data('name');
+      var target = $(this).parent().find('input');
+      target.attr('name', name);
     });
-    // send form
-    $('#filter>a').each(function(index, item) {
-      $(item).click(function(event) {
-        event.preventDefault();
-        console.log('clicked');
-        $('#filter-form>'+'#filter-form-'+$(this).data('filter-type')).val($(this).data('value'));
-        $('#filter-form').submit();
-      });
-    })
+
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
   });
 </script>

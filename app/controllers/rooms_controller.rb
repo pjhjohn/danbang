@@ -65,7 +65,7 @@ class RoomsController < ApplicationController
     room.image5         = params[:image5        ] unless params[:image5].nil?
     room.representative = params[:representative] unless params[:representative].nil?
     room.save
-    redirect_to "/"
+    redirect_to "/rooms/#{room.id}"
   end
 
   def update

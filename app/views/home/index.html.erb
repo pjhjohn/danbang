@@ -61,7 +61,7 @@
           <div class="row vert-margined-20">
             <div class="horiz-padded-2 full left listing-title">
               <% unless @rooms_oneroom.empty? %>
-              <a class="vert-margined right btn btn-secondary waves-effect" href="/users_sign_in">모두 보기</a>
+              <a class="vert-margined right btn btn-secondary waves-effect" href="/rooms">모두 보기</a>
               <% end %>
               <h2 class="vert-margined">단기입주 가능한 원룸/오피스텔</h2>
               <p id="target" class="scrollspy">단기입주 위주의 원룸과 오피스텔 목록입니다</p>
@@ -70,7 +70,7 @@
             <div class="row">
               <center>
                 <h3>원룸/오피스텔 매물이 없습니다</h3>
-                <a href="/users_sign_in">매물 등록하러 가기</a>
+                <a href="/rooms/new">매물 등록하러 가기</a>
               </center>
             </div>
             <% else %>
@@ -88,7 +88,7 @@
           <div class="row vert-margined-20">
             <div class="horiz-padded-2 full left listing-title">
               <% unless @rooms_oneroom.empty? %>
-              <a class="vert-margined right btn btn-secondary waves-effect" href="/users_sign_in">모두 보기</a>
+              <a class="vert-margined right btn btn-secondary waves-effect" href="/rooms">모두 보기</a>
               <% end %>
               <h2 class="vert-margined">단기 전대차 매물</h2>
               <p class="">반년 이하의 단기 전대차 매물이 올라오는 곳입니다</p>
@@ -97,7 +97,7 @@
             <div class="row">
               <center>
                 <h3>전대차 매물이 없습니다</h3>
-                <a href="/users_sign_in">매물 등록하러 가기</a>
+                <a href="/rooms/new">매물 등록하러 가기</a>
               </center>
             </div>
             <% else %>

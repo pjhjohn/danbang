@@ -92,7 +92,7 @@
             </tr>
             <tr>
               <td>계약가능기간</td>
-              <td><%= @room.in_date %> ~ <%= @room.out_date %></td>
+              <td><%= @room.in_date.strftime("%Y년 %m월 %d일") %> ~ <%= @room.out_date.strftime("%Y년 %m월 %d일") %></td>
             </tr>
           </tbody>
         </table>

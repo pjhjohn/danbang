@@ -6,45 +6,54 @@
           <div class="container" style="min-height:768px;">
           <div class="row vert-margined-20">
             <center>
-              <div class="horiz-padded-2 full left listing-title">
+              <div class="row">
                 <h2 class="vert-margined">매물 리스트</h2>
                 <!--<p id="target" class="scrollspy">필터를 쒜낏쒜낏</p>-->
               </div>
               <div class="row">
                 <%= form_tag '/rooms', id: 'form', method: 'get', multipart: true do %>
                 <%# is_oneroom %>
-                <div class="input-field col s2">
+                <div class="input-field col s3">
                   <select data-name="filter_is_oneroom">
-                    <option value="" disabled selected>전대차 여부</option>
-                    <option value="1">원룸/오피스텔</option>
-                    <option value="2">전대차</option>
+                    <option value="" <%=" selected" if @filter_is_oneroom.nil? %>>전대차 여부</option>
+                    <option value="1"<%=" selected" if !@filter_is_oneroom.nil? and  @filter_is_oneroom %>>원룸/오피스텔</option>
+                    <option value="2"<%=" selected" if !@filter_is_oneroom.nil? and !@filter_is_oneroom %>>전대차</option>
                   </select>
                 </div>
                 <%# location %>
-                <div class="input-field col s2">
+                <div class="input-field col s3">
                   <select data-name="filter_location">
-                    <option value="" disabled selected>위치</option>
-                    <option value="1">서울대입구</option>
-                    <option value="2">낙성대</option>
-                    <option value="3">고시촌(녹두)</option>
+                    <option value="" <%=" selected" if @filter_location.nil? %>>위치</option>
+                    <option value="1"<%=" selected" if !@filter_location.nil? and @filter_location== 1 %>>서울대입구</option>
+                    <option value="2"<%=" selected" if !@filter_location.nil? and @filter_location== 2 %>>낙성대</option>
+                    <option value="3"<%=" selected" if !@filter_location.nil? and @filter_location== 3 %>>고시촌(녹두)</option>
                   </select>
                 </div>
-                <%# monthly_pay %>
-                <div class="input-field col s1">
-                  <%= number_field_tag :filter_monthly_pay_min %>
+                <%# is_male %>
+                <div class="input-field col s3">
+                  <select data-name="filter_is_male">
+                    <option value="" <%=" selected" if @filter_is_male.nil? %>>성별</option>
+                    <option value="1"<%=" selected" if !@filter_is_male.nil? and  @filter_is_male %>>남성</option>
+                    <option value="2"<%=" selected" if !@filter_is_male.nil? and !@filter_is_male %>>여성</option>
+                  </select>
                 </div>
-                <div class="input-field col s1">
-                  <%= number_field_tag :filter_monthly_pay_max %>
+                <%# submit %>
+                <div class="col s3">
+                  <%= submit_tag '필터 적용하기', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
+                </div>
+                <%# monthly_pay %>
+                <div class="input-field col s3">
+                  <%= number_field_tag :filter_monthly_pay_min, @filter_monthly_pay_min, placeholder: "최저월세" %>
+                </div>
+                <div class="input-field col s3">
+                  <%= number_field_tag :filter_monthly_pay_max, @filter_monthly_pay_max, placeholder: "최고월세" %>
                 </div>
                 <%# in&out date %>
-                <div class="input-field col s2">
-                  <%= date_field_tag :filter_in_date, nil, class: "datepicker" %>
+                <div class="input-field col s3">
+                  <%= date_field_tag :filter_in_date, @filter_in_date.nil?? nil: @filter_in_date.strftime("%d %B, %Y"), placeholder: "들어오는 날짜", class: "datepicker" %>
                 </div>
-                <div class="input-field col s2">
-                  <%= date_field_tag :filter_out_date, nil, class: "datepicker" %>
-                </div>
-                <div class="col s2">
-                  <%= submit_tag '필터 적용', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
+                <div class="input-field col s3">
+                  <%= date_field_tag :filter_out_date, @filter_out_date.nil?? nil: @filter_out_date.strftime("%d %B, %Y"), placeholder: "나가는 날짜",class: "datepicker" %>
                 </div>
                 <% end %>
               </div>
@@ -64,7 +73,6 @@
               <% end %>
             </div>
             <% end %>
-            <center><span>pagination placeholder</span></center>
           </div>
         </div>
       </section>

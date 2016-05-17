@@ -3,21 +3,21 @@ class RoomsController < ApplicationController
 
   def index
     # raise "#{params.inspect}"
-    @filter_is_oneroom      = params[:filter_is_oneroom     ]
-    @filter_location        = params[:filter_location       ]
-    @filter_is_male         = params[:filter_is_male        ]
-    @filter_monthly_pay_min = params[:filter_monthly_pay_min]
-    @filter_monthly_pay_max = params[:filter_monthly_pay_max]
-    @filter_in_date         = DateTime.parse(params[:filter_in_date ] || "2010-01-01 00:00:00")
-    @filter_out_date        = DateTime.parse(params[:filter_out_date] || "2020-12-31 23:59:59")
+    @filter_is_oneroom      = is_oneroom_enum(params[:filter_is_oneroom ])
+    @filter_location        =   location_enum(params[:filter_location   ])
+    @filter_is_male         =    is_male_enum(params[:filter_is_male    ])
+    @filter_monthly_pay_min = params[:filter_monthly_pay_min].present?? params[:filter_monthly_pay_min].to_i : nil
+    @filter_monthly_pay_max = params[:filter_monthly_pay_max].present?? params[:filter_monthly_pay_max].to_i : nil
+    @filter_in_date         = params[:filter_in_date ].present?? DateTime.parse(params[:filter_in_date ]) : nil
+    @filter_out_date        = params[:filter_out_date].present?? DateTime.parse(params[:filter_out_date]) : nil
     @rooms = Room.where(deleted: false)
     @rooms = @rooms.where(is_oneroom:        @filter_is_oneroom)        unless @filter_is_oneroom.nil?
     @rooms = @rooms.where(is_male:           @filter_is_male)           unless @filter_is_male.nil?
     @rooms = @rooms.where(location:          @filter_location)          unless @filter_location.nil?
-    @rooms = @rooms.where("in_date > ?",     @filter_in_date - 7.days)  unless @filter_in_date.nil?
-    @rooms = @rooms.where("out_date < ?",    @filter_out_date + 7.days) unless @filter_out_date.nil?
     @rooms = @rooms.where("monthly_pay > ?", @filter_monthly_pay_min)   unless @filter_monthly_pay_min.nil?
     @rooms = @rooms.where("monthly_pay < ?", @filter_monthly_pay_max)   unless @filter_monthly_pay_max.nil?
+    @rooms = @rooms.where("in_date > ?",     @filter_in_date - 7.days)  unless @filter_in_date.nil?
+    @rooms = @rooms.where("out_date < ?",    @filter_out_date + 7.days) unless @filter_out_date.nil?
   end
 
   def detail

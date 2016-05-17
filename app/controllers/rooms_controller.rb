@@ -40,8 +40,8 @@ class RoomsController < ApplicationController
     room = Room.new
     room.user_id        = current_user.id
     room.is_male        = current_user.is_male
-    room.is_oneroom     = params[:is_oneroom    ] == true
-    room.location       = params[:location      ].to_i
+    room.is_oneroom     = params[:is_oneroom    ] == "true"
+    room.location       = location_enum(params[:location])
     room.address        = params[:address       ]
     room.lat            = params[:lat           ].to_f
     room.lng            = params[:lng           ].to_f
@@ -51,11 +51,11 @@ class RoomsController < ApplicationController
     room.admin_options  = params[:admin_options ]
     room.in_date        = DateTime.parse(params[:in_date ])
     room.out_date       = DateTime.parse(params[:out_date])
-    room.room_type      = params[:room_type     ].to_i
+    room.room_type      = room_type_enum(params[:room_type])
     room.room_size      = params[:room_size     ].to_i
-    room.room_floor     = params[:room_floor    ].to_i
-    room.elevator       = params[:elevator      ] == true
-    room.parking        = params[:parking       ] == true
+    room.room_floor     = room_floor_enum(params[:room_floor])
+    room.elevator       = params[:elevator      ] == "true"
+    room.parking        = params[:parking       ] == "true"
     room.options        = params[:options       ]
     room.description    = params[:description   ]
     room.image1         = params[:image1        ] unless params[:image1].nil?
@@ -71,33 +71,35 @@ class RoomsController < ApplicationController
   def update
     room = Room.find_by_id(params[:room_id])
     unless room.nil?
-      room.is_oneroom     = params[:is_oneroom    ]
-      room.location       = params[:location      ]
+      room.is_oneroom     = params[:is_oneroom    ] == "true"
+      room.location       = location_enum(params[:location])
       room.address        = params[:address       ]
-      room.lat            = params[:lat           ]
-      room.lng            = params[:lng           ]
-      room.insurance_pay  = params[:insurance_pay ]
-      room.monthly_pay    = params[:monthly_pay   ]
-      room.admin_pay      = params[:admin_pay     ]
+      room.lat            = params[:lat           ].to_f
+      room.lng            = params[:lng           ].to_f
+      room.insurance_pay  = params[:insurance_pay ].to_i
+      room.monthly_pay    = params[:monthly_pay   ].to_i
+      room.admin_pay      = params[:admin_pay     ].to_i
       room.admin_options  = params[:admin_options ]
-      room.in_date        = params[:in_date       ]
-      room.out_date       = params[:out_date      ]
-      room.room_type      = params[:room_type     ]
-      room.room_size      = params[:room_size     ]
-      room.room_floor     = params[:room_floor    ]
-      room.elevator       = params[:elevator      ]
-      room.parking        = params[:parking       ]
+      room.in_date        = DateTime.parse(params[:in_date ])
+      room.out_date       = DateTime.parse(params[:out_date])
+      room.room_type      = room_type_enum(params[:room_type])
+      room.room_size      = params[:room_size     ].to_i
+      room.room_floor     = room_floor_enum(params[:room_floor])
+      room.elevator       = params[:elevator      ] == "true"
+      room.parking        = params[:parking       ] == "true"
       room.options        = params[:options       ]
       room.description    = params[:description   ]
-      room.image1         = params[:image1        ] unless params[:image1].empty?
-      room.image2         = params[:image2        ] unless params[:image2].empty?
-      room.image3         = params[:image3        ] unless params[:image3].empty?
-      room.image4         = params[:image4        ] unless params[:image4].empty?
-      room.image5         = params[:image5        ] unless params[:image5].empty?
-      room.representative = params[:representative] unless params[:representative].empty?
+      room.image1         = params[:image1        ] unless params[:image1].nil?
+      room.image2         = params[:image2        ] unless params[:image2].nil?
+      room.image3         = params[:image3        ] unless params[:image3].nil?
+      room.image4         = params[:image4        ] unless params[:image4].nil?
+      room.image5         = params[:image5        ] unless params[:image5].nil?
+      room.representative = params[:representative] unless params[:representative].nil?
       room.save
+      redirect_to "/rooms/#{room.id}"
+    else
+      redirect_to :back
     end
-    redirect_to "/"
   end
 
   def delete

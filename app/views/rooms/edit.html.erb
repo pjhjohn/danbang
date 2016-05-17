@@ -11,16 +11,16 @@
           <h3>매물 수정하기</h3>
         </center>
 
-        <%= form_tag '/rooms/create', id: 'form', multipart: true do %>
+        <%= form_tag "/rooms/update/#{@room.id}", id: 'form', multipart: true do %>
           <%# is_oneroom %>
           <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "전대차 여부" %></div>
           <div class="row">
             <div class="col l6">
-              <%= radio_button_tag :is_oneroom, :true, false, class: "with-gap" %>
+              <%= radio_button_tag :is_oneroom, :true, false, class: "with-gap", checked: @room.is_oneroom %>
               <%= label_tag :is_oneroom_true, "원룸/오피스텔" %>
             </div>
             <div class="col l6">
-              <%= radio_button_tag :is_oneroom, :false, false, class: "with-gap" %>
+              <%= radio_button_tag :is_oneroom, :false, false, class: "with-gap", checked: !@room.is_oneroom %>
               <%= label_tag :is_oneroom_false, "전대차" %>
             </div>
           </div>
@@ -29,22 +29,22 @@
           <div class="row">
             <div class="input-field col s12">
               <select data-name="location">
-                <option value="" disabled selected></option>
-                <option value="1">서울대입구</option>
-                <option value="2">낙성대</option>
-                <option value="3">고시촌(녹두)</option>
+                <option value="" disabled<%=" selected" if @room.location.nil? || @room.location == 0 %>>위치</option>
+                <option value="1"<%=" selected" if !@room.location.nil? and @room.location == 1 %>>서울대입구</option>
+                <option value="2"<%=" selected" if !@room.location.nil? and @room.location == 2 %>>낙성대</option>
+                <option value="3"<%=" selected" if !@room.location.nil? and @room.location == 3 %>>고시촌(녹두)</option>
               </select>
               <label>위치</label>
             </div>
           </div>
 
           <%# address + map + lat&lng %>
-          <%= hidden_field_tag 'lat'%>
-          <%= hidden_field_tag 'lng'%>
+          <%= hidden_field_tag 'lat', @room.lat%>
+          <%= hidden_field_tag 'lng', @room.lng%>
           <%= label_tag :address, "주소" %>
           <div id="map_search" class="row input-group">
             <div class="col s9">
-              <%= text_field_tag :address, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
+              <%= text_field_tag :address, @room.address, placeholder: "검색버튼을 눌러 확인해주세요" %>
             </div>
             <div class="col s3">
               <center>
@@ -60,7 +60,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :insurance_pay, "보증금" %>
-              <%= number_field_tag :insurance_pay %>
+              <%= number_field_tag :insurance_pay, @room.insurance_pay %>
             </div>
           </div>
 
@@ -68,7 +68,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :monthly_pay, "월세" %>
-              <%= number_field_tag :monthly_pay %>
+              <%= number_field_tag :monthly_pay, @room.monthly_pay %>
             </div>
           </div>
 
@@ -76,7 +76,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :admin_pay, "관리비" %>
-              <%= number_field_tag :admin_pay %>
+              <%= number_field_tag :admin_pay, @room.admin_pay %>
             </div>
           </div>
 
@@ -84,7 +84,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :admin_options, "관리비 포함항목" %>
-              <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
+              <%= text_area_tag :admin_options, @room.admin_options, class: "materialize-textarea" %>
             </div>
           </div>
 
@@ -92,11 +92,11 @@
           <div class="row">
             <div class="col l6">
               <%= label_tag :in_date, "계약가능 첫날" %>
-              <%= date_field_tag :in_date, nil, class: "datepicker" %>
+              <%= date_field_tag :in_date, @room.in_date.nil?? nil : @room.in_date.strftime("%d %B, %Y"), class: "datepicker" %>
             </div>
             <div class="col l6">
               <%= label_tag :out_date, "계약가능 마지막날" %>
-              <%= date_field_tag :out_date, nil, class: "datepicker" %>
+              <%= date_field_tag :out_date, @room.in_date.nil?? nil : @room.out_date.strftime("%d %B, %Y"), class: "datepicker" %>
             </div>
           </div>
 
@@ -104,10 +104,10 @@
           <div class="row">
             <div class="input-field col s12">
               <select data-name="room_type">
-                <option value="" disabled selected></option>
-                <option value="1">원룸</option>
-                <option value="2">1.5룸</option>
-                <option value="3">투칸</option>
+                <option value="" disabled<%=" selected" if @room.room_type.nil? || @room.room_type == 0 %>></option>
+                <option value="1"<%=" selected" if !@room.room_type.nil? and @room.room_type == 1 %>>원룸</option>
+                <option value="2"<%=" selected" if !@room.room_type.nil? and @room.room_type == 2 %>>1.5룸</option>
+                <option value="3"<%=" selected" if !@room.room_type.nil? and @room.room_type == 3 %>>투칸</option>
               </select>
               <label>방 구조</label>
             </div>
@@ -117,7 +117,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :room_size, "방 평수" %>
-              <%= number_field_tag :room_size %>
+              <%= number_field_tag :room_size, @room.room_size %>
             </div>
           </div>
 
@@ -125,29 +125,29 @@
           <div class="row">
             <div class="input-field col s12">
               <select data-name="room_floor">
-                <option value="" disabled selected></option>
-                <option value="1">지하1층</option>
-                <option value="2">반지하</option>
-                <option value="3">1층</option>
-                <option value="4">2층</option>
-                <option value="5">3층</option>
-                <option value="6">4층</option>
-                <option value="7">5층</option>
-                <option value="8">6층</option>
-                <option value="9">7층</option>
-                <option value="10">8층</option>
-                <option value="11">9층</option>
-                <option value="12">10층</option>
-                <option value="13">11층</option>
-                <option value="14">12층</option>
-                <option value="15">13층</option>
-                <option value="16">14층</option>
-                <option value="17">15층</option>
-                <option value="18">16층</option>
-                <option value="19">17층</option>
-                <option value="20">18층</option>
-                <option value="21">19층</option>
-                <option value="22">20층</option>
+                <option value="" disabled<%=" selected" if @room.room_floor.nil? || @room.room_floor == 0 %>></option>
+                <option value="1" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 1 %>>지하1층</option>
+                <option value="2" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 2 %>>반지하</option>
+                <option value="3" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 3 %>>1층</option>
+                <option value="4" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 4 %>>2층</option>
+                <option value="5" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 5 %>>3층</option>
+                <option value="6" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 6 %>>4층</option>
+                <option value="7" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 7 %>>5층</option>
+                <option value="8" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 8 %>>6층</option>
+                <option value="9" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 9 %>>7층</option>
+                <option value="10"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 10%>>8층</option>
+                <option value="11"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 11%>>9층</option>
+                <option value="12"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 12%>>10층</option>
+                <option value="13"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 13%>>11층</option>
+                <option value="14"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 14%>>12층</option>
+                <option value="15"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 15%>>13층</option>
+                <option value="16"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 16%>>14층</option>
+                <option value="17"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 17%>>15층</option>
+                <option value="18"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 18%>>16층</option>
+                <option value="19"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 19%>>17층</option>
+                <option value="20"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 20%>>18층</option>
+                <option value="21"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 21%>>19층</option>
+                <option value="22"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 22%>>20층</option>
               </select>
               <label>층수</label>
             </div>
@@ -157,11 +157,11 @@
           <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "엘리베이터 여부" %></div>
           <div class="row">
             <div class="col l6">
-              <%= radio_button_tag :elevator, :true, false, class: "with-gap" %>
+              <%= radio_button_tag :elevator, :true, false, class: "with-gap", checked: @room.elevator %>
               <%= label_tag :elevator_true, "YES" %>
             </div>
             <div class="col l6">
-              <%= radio_button_tag :elevator, :false, false, class: "with-gap" %>
+              <%= radio_button_tag :elevator, :false, false, class: "with-gap", checked: !@room.elevator %>
               <%= label_tag :elevator_false, "NO" %>
             </div>
           </div>
@@ -170,11 +170,11 @@
           <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "주차공간 여부" %></div>
           <div class="row">
             <div class="col l6">
-              <%= radio_button_tag :parking, :true, false, class: "with-gap" %>
+              <%= radio_button_tag :parking, :true, false, class: "with-gap", checked: @room.parking %>
               <%= label_tag :parking_true, "YES" %>
             </div>
             <div class="col l6">
-              <%= radio_button_tag :parking, :false, false, class: "with-gap" %>
+              <%= radio_button_tag :parking, :false, false, class: "with-gap", checked: !@room.parking %>
               <%= label_tag :parking_false, "NO" %>
             </div>
           </div>
@@ -183,7 +183,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :options, "옵션" %>
-              <%= text_area_tag :options, nil, class: "materialize-textarea" %>
+              <%= text_area_tag :options, @room.options, class: "materialize-textarea" %>
             </div>
           </div>
           
@@ -191,7 +191,7 @@
           <div class="row">
             <div class="input-field col s12">
               <%= label_tag :description, "상세설명" %>
-              <%= text_area_tag :description, nil, class: "materialize-textarea" %>
+              <%= text_area_tag :description, @room.description, class: "materialize-textarea" %>
             </div>
           </div>
 
@@ -250,7 +250,7 @@
     }
 
     var map_dom_element = $("#map_canvas_id_lnglat")[0];
-    var center = new google.maps.LatLng(37.497921, 127.027636);
+    var center = new google.maps.LatLng(<%= @room.lat %>,<%= @room.lng %>);
     var options = {
       zoom: 15,
       center: center

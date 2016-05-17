@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'rooms/remove/:room_id' => 'rooms#remove',  :constraints => { :room_id => /\d+/ }
 
   post 'rooms/create' => 'rooms#create'
-  post 'rooms/update' => 'rooms#update'
+  post 'rooms/update/:room_id' => 'rooms#update'
   get 'rooms/delete/:room_id' => 'rooms#delete'
   get 'rooms/complete/:room_id' => 'rooms#complete'
 

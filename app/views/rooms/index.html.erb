@@ -23,10 +23,10 @@
                 <%# location %>
                 <div class="input-field col s3">
                   <select data-name="filter_location">
-                    <option value="" <%=" selected" if @filter_location.nil? %>>위치</option>
-                    <option value="1"<%=" selected" if !@filter_location.nil? and @filter_location== 1 %>>서울대입구</option>
-                    <option value="2"<%=" selected" if !@filter_location.nil? and @filter_location== 2 %>>낙성대</option>
-                    <option value="3"<%=" selected" if !@filter_location.nil? and @filter_location== 3 %>>고시촌(녹두)</option>
+                    <option value="" <%=" selected" if @filter_location.nil? || @filter_location == 0%>>위치</option>
+                    <option value="1"<%=" selected" if !@filter_location.nil? and @filter_location == 1 %>>서울대입구</option>
+                    <option value="2"<%=" selected" if !@filter_location.nil? and @filter_location == 2 %>>낙성대</option>
+                    <option value="3"<%=" selected" if !@filter_location.nil? and @filter_location == 3 %>>고시촌(녹두)</option>
                   </select>
                 </div>
                 <%# is_male %>

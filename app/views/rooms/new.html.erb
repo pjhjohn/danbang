@@ -216,34 +216,30 @@
     </div>
   </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <script>
-  $(document).ready(function() {
-    // Geocode Mapper
-    var map;
-    var marker;
-    var geocoder;
+  var map;
+  var marker;
+  var geocoder;
+  var update_field = function(position) {
+    $('#lat').val(position.lat());
+    $('#lng').val(position.lng());
+    console.log("latitude :", $('#lat').val(), "longitude :", $('#lng').val());
+  };
+  var geocode_address = function(address) {
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        var location = results[0].geometry.location;
+        $('#address').val(results[0].formatted_address);
+        console.log(results);
+        map.setCenter(location);
+        marker.setPosition(location);
+        update_field(location);
+      } else alert('Geocode was not successful for the following reason: ' + status);
+    });
+  }
   
-    var update_field = function(position) {
-      $('#lat').val(position.lat());
-      $('#lng').val(position.lng());
-      console.log("latitude :", $('#lat').val(), "longitude :", $('#lng').val());
-    };
-  
-    var geocode_address = function(address) {
-      geocoder.geocode({'address': address}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-          var location = results[0].geometry.location;
-          $('#address').val(results[0].formatted_address);
-          console.log(results);
-          map.setCenter(location);
-          marker.setPosition(location);
-          update_field(location);
-        } else alert('Geocode was not successful for the following reason: ' + status);
-      });
-    }
-
+  function initialize() {
     var map_dom_element = $("#map_canvas_id_lnglat")[0];
     var center = new google.maps.LatLng(37.497921, 127.027636);
     var options = {
@@ -265,14 +261,11 @@
       marker.setPosition(e.latLng);
       update_field(e.latLng);
     });
+  }
 
-    $("#btn_address").click(function(e) {
-      geocode_address($('#address').val());
-      return false;
-    });
-    // Input Control
+  $(document).ready(function() {
+    // Fom Validation & Input Control
     var validate_form = function(form) {
-      // Form Validation
       return form.validate({
         rules: {
           is_oneroom:    "required",
@@ -319,6 +312,11 @@
       } else return;
     });
 
+    // Register Btn-Click Event
+    $("#btn_address").click(function(e) {
+      geocode_address($('#address').val());
+      return false;
+    });
     $("#form-submit").click(function(e) {
       if (!validate_form($('#form'))) event.preventDefault();
     });
@@ -330,10 +328,10 @@
       var target = $(this).parent().find('input');
       target.attr('name', name);
     });
-
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15 // Creates a dropdown of 15 years to control year
     });
   });
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize"></script>

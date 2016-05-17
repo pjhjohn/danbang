@@ -96,30 +96,29 @@
     </div>
   </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
 <script>
-  $(document).ready(function() {
-    var map;
-    var marker;
-    
+  var map;
+  var marker;
+
+  function initialize() {
     var map_dom_element = $('#map')[0];
     var center = new google.maps.LatLng(<%= @room.lat %>, <%= @room.lng %>);
     var options = {
       zoom: 15,
       center: center
     }
-  
     map = new google.maps.Map(map_dom_element, options);
-  
     marker = new google.maps.Marker({
       map: map,
       position: center,
       draggable: true
     });
-    
-    $(document).ready(function(){
-      $('.slider').slider();
-    });
+  }
+
+  $(document).ready(function() {
+    $('.slider').slider();
   });
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize"></script>
 <% end %>

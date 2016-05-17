@@ -9,7 +9,10 @@
     <div class="card-content">
       <span class="card-title grey-text text-darken-4">
         <i class="activator icon-add right"></i>
-        <a href="/rooms/<%= room.id %>"><span class=""><%= location_str(room) %> <%= is_oneroom_str(room) %></span></a>
+        <a href="/rooms/<%= room.id %>">
+          <span><%= room.in_date.strftime("%Y.%m.%d") %> ~ <%= room.out_date.strftime("%Y.%m.%d") %></span><br/>
+          <span><%= location_str(room) %> </span>
+        </a>
       </span>
     </div>
     <div class="card-action">
@@ -19,21 +22,11 @@
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">
         <i class="icon-close right"></i>
-        <% if room.is_oneroom %>
         <%= simple_format("
           월세 : #{room.monthly_pay} 만원
           관리비 : #{room.admin_pay} 만원
           보험금 : #{room.insurance_pay} 만원
         ")%>
-        <% else %>
-        <%= simple_format("
-          월세 : #{room.monthly_pay} 만원
-          관리비 : #{room.admin_pay} 만원
-          보험금 : #{room.insurance_pay} 만원
-          드루와 : #{room.in_date.strftime("%Y년 %m월 %d일")}
-          나가 : #{room.out_date.strftime("%Y년 %m월 %d일")}
-        ")%>
-        <% end %>
       </span>
       <p><span id="hs_cos_wrapper_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_blog_social_sharing" style="" data-hs-cos-general-type="widget" data-hs-cos-type="blog_social_sharing">
       </span></p>

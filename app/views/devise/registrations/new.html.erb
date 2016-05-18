@@ -24,7 +24,20 @@
             <%= f.label :password_confirmation %><br />
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
           </div>
-        
+          
+          <%# is_male %>
+          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "성별" %></div>
+          <div class="row">
+            <div class="col l6">
+              <%= f.radio_button :is_male, '1', class: "with-gap" %>
+              <%= f.label :is_male_1, "남성" %>
+            </div>
+            <div class="col l6">
+              <%= f.radio_button :is_male, '0', class: "with-gap" %>
+              <%= f.label :is_male_0, "여성" %>
+            </div>
+          </div>
+
           <div class="actions">
             <%= f.submit "Sign up", class: :btn, style: "float:right"  %>
           </div>

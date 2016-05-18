@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
 
   # CRUD
   def update_room_data(room)
-    room.is_oneroom     = params[:is_oneroom    ] == "true"
+    room.is_oneroom     = params[:is_oneroom    ]
     room.location       = location_enum(params[:location])
     room.address        = params[:address       ]
     room.lat            = params[:lat           ].to_f
@@ -51,8 +51,8 @@ class RoomsController < ApplicationController
     room.room_type      = room_type_enum(params[:room_type])
     room.room_size      = params[:room_size     ].to_i
     room.room_floor     = room_floor_enum(params[:room_floor])
-    room.elevator       = params[:elevator      ] == "true"
-    room.parking        = params[:parking       ] == "true"
+    room.elevator       = params[:elevator      ]
+    room.parking        = params[:parking       ]
     room.options        = params[:options       ]
     room.description    = params[:description   ]
     room.image1         = params[:image1        ] unless params[:image1].nil?

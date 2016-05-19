@@ -22,6 +22,10 @@ class RoomsController < ApplicationController
 
   def detail
     @room = Room.find_by_id(params[:room_id])
+    unless @room.nil?
+      @room.hit_count = @room.hit_count + 1
+      @room.save
+    end
   end
 
   def new

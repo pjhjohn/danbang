@@ -37,11 +37,14 @@
         <li><a href="#" class="notice" style="color:orange;"><%= notice %></a></li>
         <li><a href="#" class="alert" style="color:red;"><%= alert %></a></li>
         <% if user_signed_in? %>
-          <li><%= link_to('매물 등록', '/rooms/new') %></li>
+          <% if current_user.is_admin %>
+          <li<%= ' class=active' if params[:controller] == 'admin' %>><%= link_to('관리', '/admin') %></li>
+          <% end %>
+          <li<%= ' class=active' if params[:controller] == 'rooms' and params[:action] == 'new' %>><%= link_to('매물 등록', '/rooms/new') %></li>
           <li><%= link_to('나가기', destroy_user_session_path, :method => :delete) %></li>
         <% else %>
-          <li><%= link_to('로그인', new_user_session_path) %></li>
-          <li><%= link_to('가입하기', new_user_registration_path) %></li>
+          <li<%= ' class=active' if params[:controller] == 'devise/sessions' and params[:action] == 'new' %>><%= link_to('로그인', new_user_session_path) %></li>
+          <li<%= ' class=active' if params[:controller] == 'devise/registrations' and params[:action] == 'new' %>><%= link_to('가입하기', new_user_registration_path) %></li>
         <% end %>
       </ul>
     </div>

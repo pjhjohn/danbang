@@ -14,11 +14,11 @@
         <%# is_oneroom %>
         <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "전대차 여부" %></div>
         <div class="row">
-          <div class="col l6">
+          <div class="col s6">
             <%= radio_button_tag :is_oneroom, '1', false, class: "with-gap", checked: @room.is_oneroom %>
             <%= label_tag :is_oneroom_1, "원룸/오피스텔" %>
           </div>
-          <div class="col l6">
+          <div class="col s6">
             <%= radio_button_tag :is_oneroom, '0', false, class: "with-gap", checked: !@room.is_oneroom %>
             <%= label_tag :is_oneroom_0, "전대차" %>
           </div>
@@ -89,11 +89,11 @@
 
         <%# in&out date %>
         <div class="row">
-          <div class="col l6">
+          <div class="col s6">
             <%= label_tag :in_date, "계약가능 첫날" %>
             <%= date_field_tag :in_date, @room.in_date.nil?? nil : @room.in_date.strftime("%d %B, %Y"), class: "datepicker" %>
           </div>
-          <div class="col l6">
+          <div class="col s6">
             <%= label_tag :out_date, "계약가능 마지막날" %>
             <%= date_field_tag :out_date, @room.in_date.nil?? nil : @room.out_date.strftime("%d %B, %Y"), class: "datepicker" %>
           </div>
@@ -155,11 +155,11 @@
         <%# elevator %>
         <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "엘리베이터 여부" %></div>
         <div class="row">
-          <div class="col l6">
+          <div class="col s6">
             <%= radio_button_tag :elevator, '1', false, class: "with-gap", checked: @room.elevator %>
             <%= label_tag :elevator_1, "YES" %>
           </div>
-          <div class="col l6">
+          <div class="col s6">
             <%= radio_button_tag :elevator, '0', false, class: "with-gap", checked: !@room.elevator %>
             <%= label_tag :elevator_0, "NO" %>
           </div>
@@ -168,11 +168,11 @@
         <%# parking %>
         <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "주차공간 여부" %></div>
         <div class="row">
-          <div class="col l6">
+          <div class="col s6">
             <%= radio_button_tag :parking, '1', false, class: "with-gap", checked: @room.parking %>
             <%= label_tag :parking_1, "YES" %>
           </div>
-          <div class="col l6">
+          <div class="col s6">
             <%= radio_button_tag :parking, '0', false, class: "with-gap", checked: !@room.parking %>
             <%= label_tag :parking_0, "NO" %>
           </div>

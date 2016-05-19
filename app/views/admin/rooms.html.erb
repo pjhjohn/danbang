@@ -15,6 +15,7 @@
             <th data-field="monthly_pay">월세</th>
             <th data-field="hit_count">조회수</th>
             <th data-field="status">상태</th>
+            <th data-field="action">액션</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,10 @@
             <td><%= room.monthly_pay %></td>
             <td><%= room.hit_count %></td>
             <td><%= room.deleted ? (room.completed ? "계약 완료" : "삭제됨"): "계약 가능" %></td>
+            <td>
+              <a href="/rooms/edit/<%= room.id %>" class="btn">수정</a>
+              <a href="/rooms/remove/<%= room.id %>" class="btn">삭제</a>
+            </td>
           </tr>
         <% end %>
         </tbody>

@@ -33,10 +33,16 @@ class RoomsController < ApplicationController
 
   def edit
     @room = Room.find_by_id(params[:room_id])
+    unless current_user.is_admin or current_user.id == @room.user.id
+      redirect_to "/"
+    end
   end
 
   def remove
     @room = Room.find_by_id(params[:room_id])
+    unless current_user.is_admin or current_user.id == @room.user.id
+      redirect_to "/"
+    end
   end
 
   # CRUD

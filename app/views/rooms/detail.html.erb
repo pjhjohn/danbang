@@ -30,7 +30,7 @@
       <div class="row">
         <a href="#" class="btn blue lighten-2 col s12 disabled">메세지 보내기</a>
       </div>
-      <% if current_user.id == @room.user.id %>
+      <% if current_user.is_admin or current_user.id == @room.user.id %>
       <div class="row">
         <a href="/rooms/edit/<%= @room.id %>" class="btn col s12 m6">매물 수정하기</a>
         <a href="/rooms/remove/<%= @room.id %>" class="btn red lighten-2 col s12 m6">매물 지우기</a>

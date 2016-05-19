@@ -1,2 +1,45 @@
-<h1>Admin#rooms</h1>
-<p>Find me in app/views/admin/rooms.html.erb</p>
+<div class="container">
+  <div class="row">
+    <center>
+      <h2>Room Management</h2>
+    </center>
+  </div>
+  <div class="row">
+    <center>
+      <table>
+        <thead>
+          <tr>
+            <th data-field="id">번호</th>
+            <th data-field="email">등록자 이메일</th>
+            <th data-field="is_oneroom">전대차 여부</th>
+            <th data-field="monthly_pay">월세</th>
+            <th data-field="hit_count">조회수</th>
+            <th data-field="status">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td><%= room.id %></td>
+            <td><%= room.user.email %></td>
+            <td><%= room.is_oneroom ? "원룸/오피스텔" : "전대차" %></td>
+            <td><%= room.monthly_pay %></td>
+            <td><%= room.hit_count %></td>
+            <td><%= room.deleted ? (room.completed ? "계약 완료" : "삭제됨"): "계약 가능" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </center>
+  </div>
+</div>
+<style>
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+</style>

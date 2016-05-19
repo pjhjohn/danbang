@@ -1,2 +1,39 @@
-<h1>Admin#users</h1>
-<p>Find me in app/views/admin/users.html.erb</p>
+<div class="container">
+  <div class="row">
+    <center>
+      <h2>User Management</h2>
+    </center>
+  </div>
+  <div class="row">
+    <center>
+      <table>
+        <thead>
+          <tr>
+            <th data-field="id">번호</th>
+            <th data-field="email">이메일</th>
+            <th data-field="gender">성별</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.email %></td>
+            <td><%= user.is_male ? "남성" : "여성" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </center>
+  </div>
+</div>
+<style>
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+</style>

@@ -1,218 +1,216 @@
-<div class="main-content full">
-  <div class="container" style="min-height:768px;">
-    <div class="row">
-      <div class="col l6 offset-l3 m12">
-        <center>
-          <h3>매물 등록하기</h3>
-        </center>
+<div class="container">
+  <div class="row">
+    <div class="col l6 offset-l3 m12">
+      <center>
+        <h3>매물 등록하기</h3>
+      </center>
 
-        <%= form_tag '/rooms/create', id: 'form', multipart: true do %>
-          <%# is_oneroom %>
-          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "전대차 여부" %></div>
-          <div class="row">
-            <div class="col l6">
-              <%= radio_button_tag :is_oneroom, '1', false, class: "with-gap" %>
-              <%= label_tag :is_oneroom_1, "원룸/오피스텔" %>
-            </div>
-            <div class="col l6">
-              <%= radio_button_tag :is_oneroom, '0', false, class: "with-gap" %>
-              <%= label_tag :is_oneroom_0, "전대차" %>
-            </div>
+      <%= form_tag '/rooms/create', id: 'form', multipart: true do %>
+        <%# is_oneroom %>
+        <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "전대차 여부" %></div>
+        <div class="row">
+          <div class="col l6">
+            <%= radio_button_tag :is_oneroom, '1', false, class: "with-gap" %>
+            <%= label_tag :is_oneroom_1, "원룸/오피스텔" %>
           </div>
+          <div class="col l6">
+            <%= radio_button_tag :is_oneroom, '0', false, class: "with-gap" %>
+            <%= label_tag :is_oneroom_0, "전대차" %>
+          </div>
+        </div>
 
-          <%# location %>
-          <div class="row">
-            <div class="input-field col s12">
-              <select data-name="location">
-                <option value="" disabled selected></option>
-                <option value="1">서울대입구</option>
-                <option value="2">낙성대</option>
-                <option value="3">고시촌(녹두)</option>
-              </select>
-              <label>위치</label>
-            </div>
+        <%# location %>
+        <div class="row">
+          <div class="input-field col s12">
+            <select data-name="location">
+              <option value="" disabled selected></option>
+              <option value="1">서울대입구</option>
+              <option value="2">낙성대</option>
+              <option value="3">고시촌(녹두)</option>
+            </select>
+            <label>위치</label>
           </div>
+        </div>
 
-          <%# address + map + lat&lng %>
-          <%= hidden_field_tag 'lat'%>
-          <%= hidden_field_tag 'lng'%>
-          <%= label_tag :address, "주소" %>
-          <div id="map_search" class="row input-group">
-            <div class="col s9">
-              <%= text_field_tag :address, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
-            </div>
-            <div class="col s3">
-              <center>
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button" id="btn_address">검색</button>
-                </span>
-              </center>
-            </div>
+        <%# address + map + lat&lng %>
+        <%= hidden_field_tag 'lat'%>
+        <%= hidden_field_tag 'lng'%>
+        <%= label_tag :address, "주소" %>
+        <div id="map_search" class="row input-group">
+          <div class="col s9">
+            <%= text_field_tag :address, nil, placeholder: "검색버튼을 눌러 확인해주세요" %>
           </div>
-          <div id="map_canvas_id_lnglat" class="row" style="height: 300px;margin:-20px 0 0 0">map loading ...</div>
+          <div class="col s3">
+            <center>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="btn_address">검색</button>
+              </span>
+            </center>
+          </div>
+        </div>
+        <div id="map_canvas_id_lnglat" class="row" style="height: 300px;margin:-20px 0 0 0">map loading ...</div>
 
-          <%# insurance_pay %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :insurance_pay, "보증금" %>
-              <%= number_field_tag :insurance_pay %>
-            </div>
+        <%# insurance_pay %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :insurance_pay, "보증금" %>
+            <%= number_field_tag :insurance_pay %>
           </div>
+        </div>
 
-          <%# monthly_pay %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :monthly_pay, "월세" %>
-              <%= number_field_tag :monthly_pay %>
-            </div>
+        <%# monthly_pay %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :monthly_pay, "월세" %>
+            <%= number_field_tag :monthly_pay %>
           </div>
+        </div>
 
-          <%# admin_pay %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :admin_pay, "관리비" %>
-              <%= number_field_tag :admin_pay %>
-            </div>
+        <%# admin_pay %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :admin_pay, "관리비" %>
+            <%= number_field_tag :admin_pay %>
           </div>
+        </div>
 
-          <%# admin_option %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :admin_options, "관리비 포함항목" %>
-              <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
-            </div>
+        <%# admin_option %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :admin_options, "관리비 포함항목" %>
+            <%= text_area_tag :admin_options, nil, class: "materialize-textarea" %>
           </div>
+        </div>
 
-          <%# in&out date %>
-          <div class="row">
-            <div class="col l6">
-              <%= label_tag :in_date, "계약가능 첫날" %>
-              <%= date_field_tag :in_date, nil, class: "datepicker" %>
-            </div>
-            <div class="col l6">
-              <%= label_tag :out_date, "계약가능 마지막날" %>
-              <%= date_field_tag :out_date, nil, class: "datepicker" %>
-            </div>
+        <%# in&out date %>
+        <div class="row">
+          <div class="col l6">
+            <%= label_tag :in_date, "계약가능 첫날" %>
+            <%= date_field_tag :in_date, nil, class: "datepicker" %>
           </div>
+          <div class="col l6">
+            <%= label_tag :out_date, "계약가능 마지막날" %>
+            <%= date_field_tag :out_date, nil, class: "datepicker" %>
+          </div>
+        </div>
 
-          <%# room_type %>
-          <div class="row">
-            <div class="input-field col s12">
-              <select data-name="room_type">
-                <option value="" disabled selected></option>
-                <option value="1">원룸</option>
-                <option value="2">1.5룸</option>
-                <option value="3">투칸</option>
-              </select>
-              <label>방 구조</label>
-            </div>
+        <%# room_type %>
+        <div class="row">
+          <div class="input-field col s12">
+            <select data-name="room_type">
+              <option value="" disabled selected></option>
+              <option value="1">원룸</option>
+              <option value="2">1.5룸</option>
+              <option value="3">투칸</option>
+            </select>
+            <label>방 구조</label>
           </div>
+        </div>
 
-          <%# room_size %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :room_size, "방 평수" %>
-              <%= number_field_tag :room_size %>
-            </div>
+        <%# room_size %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :room_size, "방 평수" %>
+            <%= number_field_tag :room_size %>
           </div>
+        </div>
 
-          <%# room_floor %>
-          <div class="row">
-            <div class="input-field col s12">
-              <select data-name="room_floor">
-                <option value="" disabled selected></option>
-                <option value="1">지하1층</option>
-                <option value="2">반지하</option>
-                <option value="3">1층</option>
-                <option value="4">2층</option>
-                <option value="5">3층</option>
-                <option value="6">4층</option>
-                <option value="7">5층</option>
-                <option value="8">6층</option>
-                <option value="9">7층</option>
-                <option value="10">8층</option>
-                <option value="11">9층</option>
-                <option value="12">10층</option>
-                <option value="13">11층</option>
-                <option value="14">12층</option>
-                <option value="15">13층</option>
-                <option value="16">14층</option>
-                <option value="17">15층</option>
-                <option value="18">16층</option>
-                <option value="19">17층</option>
-                <option value="20">18층</option>
-                <option value="21">19층</option>
-                <option value="22">20층</option>
-              </select>
-              <label>층수</label>
-            </div>
+        <%# room_floor %>
+        <div class="row">
+          <div class="input-field col s12">
+            <select data-name="room_floor">
+              <option value="" disabled selected></option>
+              <option value="1">지하1층</option>
+              <option value="2">반지하</option>
+              <option value="3">1층</option>
+              <option value="4">2층</option>
+              <option value="5">3층</option>
+              <option value="6">4층</option>
+              <option value="7">5층</option>
+              <option value="8">6층</option>
+              <option value="9">7층</option>
+              <option value="10">8층</option>
+              <option value="11">9층</option>
+              <option value="12">10층</option>
+              <option value="13">11층</option>
+              <option value="14">12층</option>
+              <option value="15">13층</option>
+              <option value="16">14층</option>
+              <option value="17">15층</option>
+              <option value="18">16층</option>
+              <option value="19">17층</option>
+              <option value="20">18층</option>
+              <option value="21">19층</option>
+              <option value="22">20층</option>
+            </select>
+            <label>층수</label>
           </div>
+        </div>
 
-          <%# elevator %>
-          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "엘리베이터 여부" %></div>
-          <div class="row">
-            <div class="col l6">
-              <%= radio_button_tag :elevator, '1', false, class: "with-gap" %>
-              <%= label_tag :elevator_1, "YES" %>
-            </div>
-            <div class="col l6">
-              <%= radio_button_tag :elevator, '0', false, class: "with-gap" %>
-              <%= label_tag :elevator_0, "NO" %>
-            </div>
+        <%# elevator %>
+        <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "엘리베이터 여부" %></div>
+        <div class="row">
+          <div class="col l6">
+            <%= radio_button_tag :elevator, '1', false, class: "with-gap" %>
+            <%= label_tag :elevator_1, "YES" %>
           </div>
+          <div class="col l6">
+            <%= radio_button_tag :elevator, '0', false, class: "with-gap" %>
+            <%= label_tag :elevator_0, "NO" %>
+          </div>
+        </div>
 
-          <%# parking %>
-          <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "주차공간 여부" %></div>
-          <div class="row">
-            <div class="col l6">
-              <%= radio_button_tag :parking, '1', false, class: "with-gap" %>
-              <%= label_tag :parking_1, "YES" %>
-            </div>
-            <div class="col l6">
-              <%= radio_button_tag :parking, '0', false, class: "with-gap" %>
-              <%= label_tag :parking_0, "NO" %>
-            </div>
+        <%# parking %>
+        <div class="row" style="margin:0 0 10px 0;"><%= label_tag "", "주차공간 여부" %></div>
+        <div class="row">
+          <div class="col l6">
+            <%= radio_button_tag :parking, '1', false, class: "with-gap" %>
+            <%= label_tag :parking_1, "YES" %>
           </div>
+          <div class="col l6">
+            <%= radio_button_tag :parking, '0', false, class: "with-gap" %>
+            <%= label_tag :parking_0, "NO" %>
+          </div>
+        </div>
 
-          <%# options %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :options, "옵션" %>
-              <%= text_area_tag :options, nil, class: "materialize-textarea" %>
-            </div>
+        <%# options %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :options, "옵션" %>
+            <%= text_area_tag :options, nil, class: "materialize-textarea" %>
           </div>
-          
-          <%# descriptions %>
-          <div class="row">
-            <div class="input-field col s12">
-              <%= label_tag :description, "상세설명" %>
-              <%= text_area_tag :description, nil, class: "materialize-textarea" %>
-            </div>
-          </div>
+        </div>
 
-          <%# representative image %>
-          <%= label_tag :representative, "대표 이미지" %>
-          <div class="file-field input-field" style="margin-top:5px;">
-            <div class="btn" style="padding-top:0px;">Image<%= file_field_tag :representative %></div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
-            </div>
+        <%# descriptions %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag :description, "상세설명" %>
+            <%= text_area_tag :description, nil, class: "materialize-textarea" %>
           </div>
+        </div>
 
-          <%# images (up to 5) %>
-          <% (1..5).each do |i| %>
-          <%= label_tag "image#{i}", "이미지 #{i}" %>
-          <div class="file-field input-field" style="margin-top:5px;">
-            <div class="btn" style="padding-top:0px;">Image<%= file_field_tag "image#{i}" %></div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
-            </div>
+        <%# representative image %>
+        <%= label_tag :representative, "대표 이미지" %>
+        <div class="file-field input-field" style="margin-top:5px;">
+          <div class="btn" style="padding-top:0px;">Image<%= file_field_tag :representative %></div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
           </div>
-          <% end %>
+        </div>
 
-          <%= submit_tag '올리기', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
+        <%# images (up to 5) %>
+        <% (1..5).each do |i| %>
+        <%= label_tag "image#{i}", "이미지 #{i}" %>
+        <div class="file-field input-field" style="margin-top:5px;">
+          <div class="btn" style="padding-top:0px;">Image<%= file_field_tag "image#{i}" %></div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
         <% end %>
-      </div>
+
+        <%= submit_tag '올리기', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
+      <% end %>
     </div>
   </div>
 </div>

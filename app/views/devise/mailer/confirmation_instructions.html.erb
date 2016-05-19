@@ -1,5 +1,19 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<div class="container">
+  <div class="row">
+    <div class="col l6 offset-l3 s12">
+      <p>Welcome <%= @email %>!</p>
+      <p>You can confirm your account email through the link below:</p>
+      <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class: "btn" %></p>
+    </div>
+  </div>
+</div>
+<style>
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+</style>

@@ -13,3 +13,492 @@
  *= require_tree .
  *= require_self
  */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+.text-steps {
+    color: #6ABD82
+}
+.text-calories {
+    color: #E1B654
+}
+.text-floors {
+    color: #D661BD
+}
+.text-active {
+    color: #F1D431
+}
+.text-nonactive {
+    color: #47b8e5
+}
+.text-sleep {
+    color: #297c9a
+}
+.text-body {
+    color: #24b5b1
+}
+.text-food {
+    color: #539e6d
+}
+.text-white {
+    color: #fff
+}
+.text-white a {
+    color: rgba(255, 255, 255, 0.75)
+}
+.text-white a:hover,
+.text-white a:focus,
+.text-white a:active {
+    color: #fff;
+    -webkit-box-shadow: 0 1px 0 0 #fff;
+    -moz-box-shadow: 0 1px 0 0 #fff;
+    box-shadow: 0 1px 0 0 #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s
+}
+.text-white a.no-style {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+.text-white a.btn:hover,
+.text-white a.btn:focus,
+.text-white a.btn:active,
+.text-white a.btn-flat:hover,
+.text-white a.btn-flat:focus,
+.text-white a.btn-flat:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+.text-black {
+    color: #000
+}
+.text-trans-white {
+    color: rgba(255, 255, 255, 0.75)
+}
+.text-skin {
+    color: #f5e9d5
+}
+.text-gray {
+    color: #cacaca
+}
+.text-blue {
+    color: #47b8e5
+}
+.text-blue.btn-flat {
+    color: #47b8e5
+}
+.text-blue.btn-flat:hover,
+.text-blue.btn-flat:focus,
+.text-blue.btn-flat:active {
+    color: #1fa5da
+}
+.text-gold {
+    color: #d8b91e
+}
+.text-lightred {
+    color: #e97878
+}
+.text-green {
+    color: #67c082
+}
+.text-trans-dark-gray {
+    color: rgba(59, 66, 80, 0.8)
+}
+.text-dark-gray {
+    color: #3b4250
+}
+.text-cyan-50 {
+    color: #E0F7FA
+}
+.white-bg {
+    background: #fff
+}
+.white-blue-bg {
+    background: #fff;
+    background: #bbf9ff;
+    background: -webkit-gradient(linear, left top, right bottom, from(#fff), to(#bbf9ff));
+    background: -webkit-linear-gradient(left, #fff, #bbf9ff);
+    background: -moz-linear-gradient(left, #fff, #bbf9ff);
+    background: -ms-linear-gradient(left, #fff, #bbf9ff);
+    background: -o-linear-gradient(left, #fff, #bbf9ff);
+    background: linear-gradient(left, #fff, #bbf9ff);
+    filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#fff', EndColorStr='#bbf9ff')
+}
+.blue-white-bg {
+    background: #fff;
+    background: #fff;
+    background: -webkit-gradient(linear, left top, right bottom, from(#bbf9ff), to(#fff));
+    background: -webkit-linear-gradient(left, #bbf9ff, #fff);
+    background: -moz-linear-gradient(left, #bbf9ff, #fff);
+    background: -ms-linear-gradient(left, #bbf9ff, #fff);
+    background: -o-linear-gradient(left, #bbf9ff, #fff);
+    background: linear-gradient(left, #bbf9ff, #fff);
+    filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#bbf9ff', EndColorStr='#fff')
+}
+.trans-white-bg-90 {
+    background: rgba(255, 255, 255, 0.9)
+}
+.trans-white-bg-70 {
+    background: rgba(255, 255, 255, 0.7)
+}
+.trans-white-bg-40 {
+    background: rgba(255, 255, 255, 0.4)
+}
+.trans-white-bg-20 {
+    background: rgba(255, 255, 255, 0.2)
+}
+.gray-00-bg {
+    background: #fafafa
+}
+.gray-01-bg {
+    background: #f5f5f5
+}
+.gray-02-bg {
+    background: #f0f0f0
+}
+.gray-04-bg {
+    background: #ccc
+}
+.gray-05-bg {
+    background: #666
+}
+.gray-08-bg {
+    background: #3b4250
+}
+.trans-dark-gray-bg {
+    background: rgba(59, 66, 80, 0.8)
+}
+.dark-blue-bg {
+    background: #297c9a
+}
+.trans-dark-blue-bg {
+    background: rgba(54, 151, 190, 0.5)
+}
+.blur-bg {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px)
+}
+.z-index-1 {
+    z-index: 1
+}
+.z-index-2 {
+    z-index: 2
+}
+.z-index-3 {
+    z-index: 3
+}
+.z-index-4 {
+    z-index: 4
+}
+.z-index-5 {
+    z-index: 5
+}
+.z-index-10 {
+    z-index: 10
+}
+.z-index-20 {
+    z-index: 20
+}
+
+/* BUTTONS */
+.btn.round,
+a.btn.round {
+    -webkit-border-radius: 1.5em;
+    -ms-border-radius: 1.5em;
+    -o-border-radius: 1.5em;
+    -border-radius: 1.5em;
+    border-radius: 1.5em;
+}
+.btn-secondary,
+a.btn-secondary {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #47b8e5;
+    color: #47b8e5
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary.active,
+a.btn-secondary:hover,
+a.btn-secondary:focus,
+a.btn-secondary.active {
+    background-color: #1fa5da;
+    border-color: #1fa5da;
+    color: #fff
+}
+.btn-secondary[inverted],
+.btn-secondary.btn-inverted,
+a.btn-secondary[inverted],
+a.btn-secondary.btn-inverted {
+    border-color: #fff;
+    color: #fff
+}
+.btn-secondary[inverted]:hover,
+.btn-secondary[inverted]:focus,
+.btn-secondary[inverted].active,
+.btn-secondary.btn-inverted:hover,
+.btn-secondary.btn-inverted:focus,
+.btn-secondary.btn-inverted.active,
+a.btn-secondary[inverted]:hover,
+a.btn-secondary[inverted]:focus,
+a.btn-secondary[inverted].active,
+a.btn-secondary.btn-inverted:hover,
+a.btn-secondary.btn-inverted:focus,
+a.btn-secondary.btn-inverted.active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #1fa5da
+}
+.btn-primary,
+a.btn-primary,
+.hs-button.primary {
+    background-color: #47b8e5;
+    border-color: #47b8e5;
+    color: #fff;
+    border: none
+}
+.btn-primary:hover,
+.btn-primary.active,
+.btn-primary:focus,
+a.btn-primary:hover,
+a.btn-primary.active,
+a.btn-primary:focus,
+.hs-button.primary:hover,
+.hs-button.primary.active,
+.hs-button.primary:focus {
+    background-color: #1fa5da;
+    border-color: #1fa5da;
+    color: #fff
+}
+.btn-primary[inverted],
+.btn-primary.btn-inverted,
+a.btn-primary[inverted],
+a.btn-primary.btn-inverted,
+.hs-button.primary[inverted],
+.hs-button.primary.btn-inverted {
+    background-color: #fff;
+    border-color: transparent;
+    color: #47b8e5
+}
+.btn-primary[inverted]:hover,
+.btn-primary[inverted]:focus,
+.btn-primary[inverted].active,
+.btn-primary.btn-inverted:hover,
+.btn-primary.btn-inverted:focus,
+.btn-primary.btn-inverted.active,
+a.btn-primary[inverted]:hover,
+a.btn-primary[inverted]:focus,
+a.btn-primary[inverted].active,
+a.btn-primary.btn-inverted:hover,
+a.btn-primary.btn-inverted:focus,
+a.btn-primary.btn-inverted.active,
+.hs-button.primary[inverted]:hover,
+.hs-button.primary[inverted]:focus,
+.hs-button.primary[inverted].active,
+.hs-button.primary.btn-inverted:hover,
+.hs-button.primary.btn-inverted:focus,
+.hs-button.primary.btn-inverted.active {
+    background-color: rgba(255, 255, 255, 0.75);
+    border-color: transparent;
+    color: #3b4250
+}
+/* POST-LISTING & POST & CARD*/
+.card a {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    text-transform: inherit
+}
+.post-listing {
+    font-size: 100%;
+    padding-bottom: 2em;
+    float: left;
+    width: 100%
+}
+@media (min-width: 481px) {
+    .post-listing {
+        font-size: 100%
+    }
+}
+.post-listing .post {
+    padding: 0.25em 0.5em;
+    width: 100%;
+    padding: 0.5em;
+    float: left
+}
+@media (min-width: 481px) {
+    .post-listing .post {
+        padding: 0.5em
+    }
+}
+@media (min-width: 768px) {
+    .post-listing .post:nth-child(1) .card .card-content .card-title,
+    .post-listing .post:nth-child(2) .card .card-content .card-title {
+        font-size: 1.125em
+    }
+}
+@media (min-width: 768px) {
+    .post-listing .post:nth-child(1) .card-image a.tag,
+    .post-listing .post:nth-child(2) .card-image a.tag {
+        font-size: 1.125em
+    }
+}
+.post-listing .post .card {
+    margin: 0
+}
+@media (min-width: 481px) {
+    .post-listing .post .card {
+        margin: 0.5rem 0 1rem 0
+    }
+}
+.post-listing .post .card .activator {
+    cursor: pointer;
+    color: #607D8B
+}
+.post-listing .post .card .card-content {
+    background: #fafafa;
+    height: 5em;
+    overflow: hidden;
+    padding: 1em;
+    position: relative
+}
+.post-listing .post .card .card-content:after {
+    height: 3em;
+    width: 100%;
+    position: absolute;
+    background: #fafafa;
+    background: -webkit-gradient(linear, top, bottom, from(rgba(250, 250, 250, 0)), to(#fafafa));
+    background: -webkit-linear-gradient(top, rgba(250, 250, 250, 0), #fafafa);
+    background: -moz-linear-gradient(top, rgba(250, 250, 250, 0), #fafafa);
+    background: -ms-linear-gradient(top, rgba(250, 250, 250, 0), #fafafa);
+    background: -o-linear-gradient(top, rgba(250, 250, 250, 0), #fafafa);
+    background: linear-gradient(top, rgba(250, 250, 250, 0), #fafafa);
+    filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='rgba(250,250,250,0)', EndColorStr='#fafafa');
+    z-index: 10;
+    content: '';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none
+}
+.post-listing .post .card .card-content .card-title {
+    position: relative;
+    width: 100%;
+    display: block;
+    line-height: 1.125;
+    font-size: 1.125em
+}
+@media (min-width: 768px) {
+    .post-listing .post .card .card-content .card-title {
+        font-size: 1.125em
+    }
+}
+.post-listing .post .card .card-content .card-title a {
+    display: block;
+    width: 100%
+}
+.post-listing .post .card .card-content .card-title .truncate {
+    max-width: 90%
+}
+.post-listing .post .card .card-content .card-title i:hover,
+.post-listing .post .card .card-content .card-title i:active,
+.post-listing .post .card .card-content .card-title i:focus {
+    color: #1fa5da
+}
+.post-listing .post .card .card-action {
+    position: relative;
+    z-index: 11;
+    background: #fff;
+    padding: 1em
+}
+.post-listing .post .card .card-action .btn-primary {
+    margin-right: 0;
+    color: #fff;
+    position: absolute;
+    top: -1.25em;
+    right: 1em;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 2;
+    text-transform: uppercase
+}
+.post-listing .post .card .card-action .author-link {
+    display: inline-block;
+    vertical-align: middle
+}
+.post-listing .post .card .card-action .author-link .hs-author-avatar {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.25em
+}
+.post-listing .post .card .card-action .author-link .author {
+    vertical-align: middle;
+    white-space: nowrap;
+    max-width: 100px;
+    display: none
+}
+@media (min-width: 768px) {
+    .post-listing .post .card .card-action .author-link .author {
+        display: inline-block
+    }
+}
+.post-listing .post .card .card-action .author-link img {
+    display: block;
+    width: 32px;
+    height: 32px
+}
+.post-listing .post .card .card-action .byline {
+    vertical-align: middle;
+    max-width: 80%
+}
+.post-listing .post .card .card-action a {
+    color: #47b8e5;
+    text-transform: inherit;
+    margin-right: 0.25em
+}
+.post-listing .post .card .card-image a.tag {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(59, 66, 80, 0.8);
+    padding: 0.25em 0.75em;
+    margin: 0.5em;
+    text-transform: none
+}
+.post-listing .post .card .card-image img {
+    display: block
+}
+.post-listing .post .card .card-image a {
+    display: block
+}
+.post-listing .post .card .card-image a .card-image-bg {
+    height: 150px;
+    background-size: cover;
+    background-position: center
+}
+@media (min-width: 481px) {
+    .post-listing .post .card .card-image a .card-image-bg {
+        height: 180px
+    }
+}
+.post-listing .post .card ul.hs-blog-social-share-list {
+    line-height: 1
+}
+.post-listing .post .card ul.hs-blog-social-share-list li {
+    margin: 0.5em 0.5em 0.5em 0;
+    line-height: 1;
+    height: 25px
+}
+@media (min-width: 768px) {
+    .post-listing .post {
+        width: 33.33%
+    }
+    .post-listing .post:only-child {
+        width: 50%;
+        padding: 0.5em 0
+    }
+}

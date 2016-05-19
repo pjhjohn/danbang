@@ -8,36 +8,61 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>잔방처리반</title>
+  <!--Recursive Import-->
   <%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> false %>
   <%=javascript_include_tag 'application', 'data-turbolinks-track'=> false %>
   <!--MaterializeCSS-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <style>
+    body {
+        background-color: #d8d8d8;
+    }
+    nav {
+        background-color: #4db6ac;
+    }
+    footer.page-footer{
+        background-color: #4db6ac;
+    }
+  </style>
   <%=csrf_meta_tags %>
 </head>
-<!-- HEADER -->
-<header id="header" class="headroom hide-header-cta">
-  <nav id="mainHeader" class="navbar-fixed" style="padding: 0px 15px;">
-    <ul class="left">
-      <li><a href="/">잔방처리반</a></li>
-    </ul>
-    <ul class="right">
-      <li><a href="#" class="notice" style="color:orange;"><%= notice %></a></li>
-      <li><a href="#" class="alert" style="color:red;"><%= alert %></a></li>
-      <% if user_signed_in? %>
-        <li><%= link_to('매물 등록', '/rooms/new') %></li>
-        <li><%= link_to('나가기', destroy_user_session_path, :method => :delete) %></li>
-      <% else %>
-        <li><%= link_to('로그인', new_user_session_path) %></li>
-        <li><%= link_to('가입하기', new_user_registration_path) %></li>
-      <% end %>
-    </ul>
+
+<header>
+  <nav>
+    <div class="nav-wrapper" style="padding-left:20px;padding-right:20px;">
+      <a href="/" class="brand-logo">잔방처리반</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#" class="notice" style="color:orange;"><%= notice %></a></li>
+        <li><a href="#" class="alert" style="color:red;"><%= alert %></a></li>
+        <% if user_signed_in? %>
+          <li><%= link_to('매물 등록', '/rooms/new') %></li>
+          <li><%= link_to('나가기', destroy_user_session_path, :method => :delete) %></li>
+        <% else %>
+          <li><%= link_to('로그인', new_user_session_path) %></li>
+          <li><%= link_to('가입하기', new_user_registration_path) %></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 </header>
 
-<body class="new-body">
-  <%=yield %>
-</body>
+<main>
+  <body>
+    <%=yield %>
+  </body>
+</main>
+
+<footer class="page-footer" style="margin-top:0px;padding-top:0px;">
+  <div class="footer-copyright">
+    <div class="container">
+      © 2016 Copyright <a class="grey-text text-lighten-4" href="http://mrl.snu.ac.kr/~pjhjohn">JoonHo Park</a>
+      <span class="right">
+        <a class="grey-text text-lighten-4" href="https://facebook.com/indieperday">1일1인디</a> & <a class="grey-text text-lighten-4" href="http://likelion.net">멋쟁이사자처럼</a>
+      </span>
+    </div>
+  </div>
+</footer>
 
 </html>

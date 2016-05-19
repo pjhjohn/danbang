@@ -8,7 +8,7 @@
     </div>
     <div class="card-content">
       <span class="card-title grey-text text-darken-4">
-        <i class="activator icon-add right"></i>
+        <i class="activator material-icons right">add</i>
         <a href="/rooms/<%= room.id %>">
           <span><%= room.in_date.strftime("%Y.%m.%d") %> ~ <%= room.out_date.strftime("%Y.%m.%d") %></span><br/>
           <span><%= location_str(room) %> </span>
@@ -16,22 +16,18 @@
       </span>
     </div>
     <div class="card-action">
-      <span class="center byline truncate">월 <%= room.monthly_pay%>만원<%= room.admin_pay > 0? " (관리비 #{room.admin_pay}만원)" : " (관리비 포함)" %></span>
-      <a class="btn btn-primary waves-effect" href="/rooms/<%= room.id %>">상세정보</a>
+      <span>월 <%= room.monthly_pay%>만원<%= room.admin_pay > 0? " (관리비 #{room.admin_pay}만원)" : " (관리비 포함)" %></span>
+      <a class="btn btn-primary waves-effect round" href="/rooms/<%= room.id %>">상세정보</a>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">
-        <i class="icon-close right"></i>
+        <i class="material-icons right">close</i>
         <%= simple_format("
           월세 : #{room.monthly_pay} 만원
           관리비 : #{room.admin_pay} 만원
           보험금 : #{room.insurance_pay} 만원
-        ")%>
+        ", style: "margin:0px;")%>
       </span>
-      <p><span id="hs_cos_wrapper_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_blog_social_sharing" style="" data-hs-cos-general-type="widget" data-hs-cos-type="blog_social_sharing">
-      </span></p>
-      <div class="hs-blog-social-share">
-      </div>
     </div>
   </div>
 </div>

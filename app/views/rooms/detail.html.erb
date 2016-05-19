@@ -3,96 +3,93 @@
 <% elsif @room.deleted %>
 <%= render :partial => "partials/room_deleted" %>
 <% else %>
-<div class="main-content full">
-  <div class="container" style="min-height:768px;">
-    <div class="row">
-      <hr>
-      <%# Left Pane : Carousel & Information Table %>
-      <div class="slider col l8 s12">
-        <ul class="slides">
-          <% image_urls = [@room.representative, @room.image1, @room.image2, @room.image3, @room.image4, @room.image5] %>
-          <% image_urls.each do |image_url| %>
-            <% if image_url.present? %>
-            <li>
-              <img src="<%= image_url %>">
-            </li>
-            <% end %>
+<div class="container">
+  <div class="row">
+    <hr>
+    <%# Left Pane : Carousel & Information Table %>
+    <div class="slider col l8 s12">
+      <ul class="slides">
+        <% image_urls = [@room.representative, @room.image1, @room.image2, @room.image3, @room.image4, @room.image5] %>
+        <% image_urls.each do |image_url| %>
+          <% if image_url.present? %>
+          <li>
+            <img class="materialboxed" src="<%= image_url %>">
+          </li>
           <% end %>
-        </ul>
-      </div>
-      
-      <%# Right Pane : Map & Button(Edit/Remove/Message) %>
-      <div class="col l4 s12" style="padding-left:20px;">
-        <div class="row" id="map" style="height:300px;margin-bottom:0px;"></div>
-        <div>
-          <center>
-            <h6>주소 : <%= @room.address %></h6>
-          </center>
-        </div>
-        <div class="row">
-          <a href="#" class="btn blue lighten-2 col s12 disabled">메세지 보내기</a>
-        </div>
-        <% if current_user.id == @room.user.id %>
-        <div class="row">
-          <a href="/rooms/edit/<%= @room.id %>" class="btn col s12 m6">매물 수정하기</a>
-          <a href="/rooms/remove/<%= @room.id %>" class="btn red lighten-2 col s12 m6">매물 지우기</a>
-        </div>
         <% end %>
-      </div>
+      </ul>
     </div>
-    <div class="row">
-      <div class="col s12" style="padding:0;">
-        <table class="striped centered">
-          <tbody>
-            <tr>
-              <td>보증금</td>
-              <td><%= @room.insurance_pay %>만원</td>
-              <td>위치</td>
-              <td><%= location_str(@room) %></td>
-            </tr>
-            <tr>
-              <td>월세</td>
-              <td><%= @room.monthly_pay %>만원</td>
-              <td>방 구조</td>
-              <td><%= room_type_str(@room) %>만원</td>
-            </tr>
-            <tr>
-              <td>관리비</td>
-              <td><%= @room.admin_pay %>만원</td>
-              <td>주차</td>
-              <td><%="불" unless @room.parking %>가능</td>
-            </tr>
-            <tr>
-              <td>층수</td>
-              <td><%= room_floor_str(@room) %></td>
-              <td>엘리베이터</td>
-              <td><%="불" unless @room.elevator %>가능</td>
-            </tr>
-          </tbody>
-        </table>
+    <%# Right Pane : Map & Button(Edit/Remove/Message) %>
+    <div class="col l4 s12" style="padding-left:20px;">
+      <div class="row" id="map" style="height:300px;margin-bottom:0px;"></div>
+      <div>
+        <center>
+          <h6>주소 : <%= @room.address %></h6>
+        </center>
       </div>
-      <div class="col s12" style="padding:0;">
-        <table class="striped centered">
-          <tbody>
-            <tr>
-              <td>계약가능기간</td>
-              <td><%= @room.in_date.strftime("%Y년 %m월 %d일") %> ~ <%= @room.out_date.strftime("%Y년 %m월 %d일") %></td>
-            </tr>
-            <tr>
-              <td>관리비 포함항목</td>
-              <td><%= simple_format(@room.admin_options) %></td>
-            </tr>
-            <tr>
-              <td>옵션</td>
-              <td><%= simple_format(@room.options) %></td>
-            </tr>
-            <tr>
-              <td>상세설명</td>
-              <td><%= simple_format(@room.description) %></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row">
+        <a href="#" class="btn blue lighten-2 col s12 disabled">메세지 보내기</a>
       </div>
+      <% if current_user.id == @room.user.id %>
+      <div class="row">
+        <a href="/rooms/edit/<%= @room.id %>" class="btn col s12 m6">매물 수정하기</a>
+        <a href="/rooms/remove/<%= @room.id %>" class="btn red lighten-2 col s12 m6">매물 지우기</a>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12" style="padding:0;">
+      <table class="striped centered">
+        <tbody>
+          <tr>
+            <td>보증금</td>
+            <td><%= @room.insurance_pay %>만원</td>
+            <td>위치</td>
+            <td><%= location_str(@room) %></td>
+          </tr>
+          <tr>
+            <td>월세</td>
+            <td><%= @room.monthly_pay %>만원</td>
+            <td>방 구조</td>
+            <td><%= room_type_str(@room) %>만원</td>
+          </tr>
+          <tr>
+            <td>관리비</td>
+            <td><%= @room.admin_pay %>만원</td>
+            <td>주차</td>
+            <td><%="불" unless @room.parking %>가능</td>
+          </tr>
+          <tr>
+            <td>층수</td>
+            <td><%= room_floor_str(@room) %></td>
+            <td>엘리베이터</td>
+            <td><%="불" unless @room.elevator %>가능</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col s12" style="padding:0;">
+      <table class="striped centered">
+        <tbody>
+          <tr>
+            <td>계약가능기간</td>
+            <td><%= @room.in_date.strftime("%Y년 %m월 %d일") %> ~ <%= @room.out_date.strftime("%Y년 %m월 %d일") %></td>
+          </tr>
+          <tr>
+            <td>관리비 포함항목</td>
+            <td><%= simple_format(@room.admin_options) %></td>
+          </tr>
+          <tr>
+            <td>옵션</td>
+            <td><%= simple_format(@room.options) %></td>
+          </tr>
+          <tr>
+            <td>상세설명</td>
+            <td><%= simple_format(@room.description) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -118,6 +115,7 @@
 
   $(document).ready(function() {
     $('.slider').slider();
+    $('.materialboxed').materialbox();
   });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize"></script>

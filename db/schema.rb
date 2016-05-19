@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160513153945) do
     t.string   "representative", default: "https://placehold.it/600x360?text=representative", null: false
     t.boolean  "deleted",        default: false,                                              null: false
     t.boolean  "completed",      default: false,                                              null: false
+    t.integer  "hit_count",      default: 0,                                                  null: false
     t.datetime "created_at",                                                                  null: false
     t.datetime "updated_at",                                                                  null: false
   end

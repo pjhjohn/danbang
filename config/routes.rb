@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
+  # Home
   root 'home#index'
 
-  get 'rooms'                 => "rooms#index"
-  get 'rooms/:room_id'        => 'rooms#detail',  :constraints => { :room_id => /\d+/ }
-  get 'rooms/new'             => 'rooms#new'
-  get 'rooms/edit/:room_id'   => 'rooms#edit',    :constraints => { :room_id => /\d+/ }
-  get 'rooms/remove/:room_id' => 'rooms#remove',  :constraints => { :room_id => /\d+/ }
+  # User - Devise
+  devise_for :users
 
-  post 'rooms/create' => 'rooms#create'
-  post 'rooms/update/:room_id' => 'rooms#update'
-  get 'rooms/delete/:room_id' => 'rooms#delete'
+  # Room
+  get 'rooms'                   => "rooms#index"
+  get 'rooms/:room_id'          => 'rooms#detail',  :constraints => { :room_id => /\d+/ }
+  get 'rooms/new'               => 'rooms#new'
+  get 'rooms/edit/:room_id'     => 'rooms#edit',    :constraints => { :room_id => /\d+/ }
+  get 'rooms/remove/:room_id'   => 'rooms#remove',  :constraints => { :room_id => /\d+/ }
+
+  post 'rooms/create'           => 'rooms#create'
+  post 'rooms/update/:room_id'  => 'rooms#update'
+  get 'rooms/delete/:room_id'   => 'rooms#delete'
   get 'rooms/complete/:room_id' => 'rooms#complete'
 
-  devise_for :users
+  # Admin
+  get 'admin/'                  => 'admin#index'
+  get 'admin/users'             => 'admin#users'
+  get 'admin/rooms'             => 'admin#rooms'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

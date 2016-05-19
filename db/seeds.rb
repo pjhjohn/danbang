@@ -11,6 +11,7 @@ user = User.new
 user.email = "a@a.a"
 user.password = "aaaaaa"
 user.password_confirmation = "aaaaaa"
+user.is_admin = true
 user.save!
 
 # Room Seed

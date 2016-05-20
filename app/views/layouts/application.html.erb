@@ -15,22 +15,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  <style>
-    body {
-        background-color: #d8d8d8;
-    }
-    nav {
-        background-color: #4db6ac;
-    }
-    footer.page-footer{
-        background-color: #4db6ac;
-    }
-  </style>
   <%=csrf_meta_tags %>
 </head>
 
 <header>
-  <nav>
+  <nav class="teal lighten-1">
     <div class="nav-wrapper" style="padding-left:20px;padding-right:20px;">
       <a href="/" class="brand-logo">잔방처리반</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -52,12 +41,12 @@
 </header>
 
 <main>
-  <body>
+  <body class="blue-grey lighten-5">
     <%=yield %>
   </body>
 </main>
 
-<footer class="page-footer" style="margin-top:0px;padding-top:0px;">
+<footer class="page-footer teal lighten-1" style="margin-top:0px;padding-top:0px;">
   <div class="footer-copyright">
     <div class="container">
       © 2016 Copyright <a class="grey-text text-lighten-4" href="http://mrl.snu.ac.kr/~pjhjohn">JoonHo Park</a>

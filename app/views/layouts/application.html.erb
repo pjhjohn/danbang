@@ -36,6 +36,20 @@
           <li<%= ' class=active' if params[:controller] == 'devise/registrations' and params[:action] == 'new' %>><%= link_to('가입하기', new_user_registration_path) %></li>
         <% end %>
       </ul>
+      <%# Side Navigation for under-med layout width %>
+      <a href="#" data-activates="side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="side-nav" id="side-menu">
+        <% if user_signed_in? %>
+          <% if current_user.is_admin %>
+          <li<%= ' class=active' if params[:controller] == 'admin' %>><%= link_to('관리', '/admin') %></li>
+          <% end %>
+          <li<%= ' class=active' if params[:controller] == 'rooms' and params[:action] == 'new' %>><%= link_to('매물 등록', '/rooms/new') %></li>
+          <li><%= link_to('나가기', destroy_user_session_path, :method => :delete) %></li>
+        <% else %>
+          <li<%= ' class=active' if params[:controller] == 'devise/sessions' and params[:action] == 'new' %>><%= link_to('로그인', new_user_session_path) %></li>
+          <li<%= ' class=active' if params[:controller] == 'devise/registrations' and params[:action] == 'new' %>><%= link_to('가입하기', new_user_registration_path) %></li>
+        <% end %>
+      </ul>
     </div>
   </nav>
 </header>
@@ -58,3 +72,9 @@
 </footer>
 
 </html>
+
+<script>
+ $(document).ready(function(){
+   $(".button-collapse").sideNav();
+  });
+</script>

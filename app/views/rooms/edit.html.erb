@@ -263,6 +263,15 @@
     google.maps.event.addListener(map, "click", function(e) {
       marker.setPosition(e.latLng);
       update_field(e.latLng);
+      geocoder.geocode({ 'latLng': e.latLng }, function (results, status) {
+        if (status !== google.maps.GeocoderStatus.OK) {
+          alert(status);
+        }
+        if (status == google.maps.GeocoderStatus.OK) {
+          console.log(results);
+          $('#address').val(results[0].formatted_address);
+        }
+      });
     });
   }
 

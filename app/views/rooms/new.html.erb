@@ -117,9 +117,9 @@
 
         <%# room_floor %>
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s6">
             <select data-name="room_floor">
-              <option value="" disabled selected></option>
+              <option value="" selected></option>
               <option value="1">지하1층</option>
               <option value="2">반지하</option>
               <option value="3">1층</option>
@@ -144,6 +144,11 @@
               <option value="22">20층</option>
             </select>
             <label>층수</label>
+          </div>
+          <%# building_floor %>
+          <div class="input-field col s6">
+            <%= label_tag :building_floor, "전체 층수" %>
+            <%= number_field_tag :building_floor, nil %>
           </div>
         </div>
 
@@ -250,7 +255,8 @@
     marker = new google.maps.Marker({
       map: map,
       position: center,
-      draggable: true
+      draggable: true,
+      scrollwheel: false
     });
 
     update_field(center);
@@ -287,7 +293,7 @@
           out_date:      { required: true },
           room_type:     { required: true },
           room_size:     { required: true },
-          room_floor:    { required: true },
+          building_floor:{ required: true },
           elevator:      { required: true },
           parking:       { required: true },
         },

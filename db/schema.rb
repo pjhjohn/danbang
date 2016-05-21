@@ -14,37 +14,38 @@
 ActiveRecord::Schema.define(version: 20160513153945) do
 
   create_table "rooms", force: :cascade do |t|
-    t.integer  "user_id",                                                                     null: false
-    t.boolean  "is_male",                                                                     null: false
-    t.boolean  "is_oneroom",                                                                  null: false
-    t.integer  "location",                                                                    null: false
-    t.string   "address",                                                                     null: false
-    t.float    "lat",                                                                         null: false
-    t.float    "lng",                                                                         null: false
-    t.integer  "insurance_pay",                                                               null: false
-    t.integer  "monthly_pay",                                                                 null: false
-    t.integer  "admin_pay",                                                                   null: false
-    t.string   "admin_options",                                                               null: false
-    t.datetime "in_date",                                                                     null: false
-    t.datetime "out_date",                                                                    null: false
-    t.integer  "room_type",                                                                   null: false
-    t.integer  "room_size",                                                                   null: false
-    t.integer  "room_floor",                                                                  null: false
-    t.boolean  "elevator",                                                                    null: false
-    t.boolean  "parking",                                                                     null: false
-    t.text     "options",                                                                     null: false
-    t.text     "description",                                                                 null: false
-    t.string   "image1",         default: "https://placehold.it/600x360?text=image1",         null: false
-    t.string   "image2",         default: "https://placehold.it/600x360?text=image2",         null: false
-    t.string   "image3",         default: "https://placehold.it/600x360?text=image3",         null: false
-    t.string   "image4",         default: "https://placehold.it/600x360?text=image4",         null: false
-    t.string   "image5",         default: "https://placehold.it/600x360?text=image5",         null: false
-    t.string   "representative", default: "https://placehold.it/600x360?text=representative", null: false
-    t.boolean  "deleted",        default: false,                                              null: false
-    t.boolean  "completed",      default: false,                                              null: false
-    t.integer  "hit_count",      default: 0,                                                  null: false
-    t.datetime "created_at",                                                                  null: false
-    t.datetime "updated_at",                                                                  null: false
+    t.integer  "user_id",                        null: false
+    t.boolean  "is_male",                        null: false
+    t.boolean  "is_oneroom",                     null: false
+    t.integer  "location",                       null: false
+    t.string   "address",                        null: false
+    t.float    "lat",                            null: false
+    t.float    "lng",                            null: false
+    t.integer  "insurance_pay",                  null: false
+    t.integer  "monthly_pay",                    null: false
+    t.integer  "admin_pay",                      null: false
+    t.string   "admin_options",                  null: false
+    t.datetime "in_date",                        null: false
+    t.datetime "out_date",                       null: false
+    t.integer  "room_type",                      null: false
+    t.integer  "room_size",                      null: false
+    t.integer  "room_floor",     default: 0,     null: false
+    t.integer  "building_floor",                 null: false
+    t.boolean  "elevator",                       null: false
+    t.boolean  "parking",                        null: false
+    t.text     "options",                        null: false
+    t.text     "description",                    null: false
+    t.string   "image1",         default: "",    null: false
+    t.string   "image2",         default: "",    null: false
+    t.string   "image3",         default: "",    null: false
+    t.string   "image4",         default: "",    null: false
+    t.string   "image5",         default: "",    null: false
+    t.string   "representative", default: "",    null: false
+    t.boolean  "deleted",        default: false, null: false
+    t.boolean  "completed",      default: false, null: false
+    t.integer  "hit_count",      default: 0,     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -122,9 +122,9 @@
 
         <%# room_floor %>
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s6">
             <select data-name="room_floor">
-              <option value="" disabled<%=" selected" if @room.room_floor.nil? || @room.room_floor == 0 %>></option>
+              <option value=""  <%=" selected" if @room.room_floor.nil? || @room.room_floor == 0 %>></option>
               <option value="1" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 1 %>>지하1층</option>
               <option value="2" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 2 %>>반지하</option>
               <option value="3" <%=" selected" if !@room.room_floor.nil? and @room.room_floor == 3 %>>1층</option>
@@ -149,6 +149,11 @@
               <option value="22"<%=" selected" if !@room.room_floor.nil? and @room.room_floor == 22%>>20층</option>
             </select>
             <label>층수</label>
+          </div>
+          <%# building_floor %>
+          <div class="input-field col s6">
+            <%= label_tag :building_floor, "전체 층수" %>
+            <%= number_field_tag :building_floor, @room.building_floor %>
           </div>
         </div>
 
@@ -292,7 +297,7 @@
           out_date:      { required: true },
           room_type:     { required: true },
           room_size:     { required: true },
-          room_floor:    { required: true },
+          building_floor:{ required: true },
           elevator:      { required: true },
           parking:       { required: true },
         },

@@ -27,9 +27,9 @@
           <h6>주소 : <%= @room.address %></h6>
         </center>
       </div>
-      <div class="row">
-        <a href="#" class="btn blue lighten-2 col s12 disabled">메세지 보내기</a>
-      </div>
+      <!--<div class="row">-->
+      <!--  <a href="#" class="btn blue lighten-2 col s12 disabled">메세지 보내기</a>-->
+      <!--</div>-->
       <% if current_user.is_admin or current_user.id == @room.user.id %>
       <div class="row">
         <a href="/rooms/edit/<%= @room.id %>" class="btn col s12 m6">매물 수정하기</a>
@@ -52,7 +52,7 @@
             <td>월세</td>
             <td><%= @room.monthly_pay %>만원</td>
             <td>방 구조</td>
-            <td><%= room_type_str(@room) %>만원</td>
+            <td><%= room_type_str(@room) %></td>
           </tr>
           <tr>
             <td>관리비</td>
@@ -62,7 +62,7 @@
           </tr>
           <tr>
             <td>층수</td>
-            <td><%= room_floor_str(@room) %></td>
+            <td><%= "#{room_floor_str(@room)} / " if @room.room_floor > 0 %>총 <%= @room.building_floor %>층</td>
             <td>엘리베이터</td>
             <td><%="불" unless @room.elevator %>가능</td>
           </tr>

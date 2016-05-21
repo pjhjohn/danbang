@@ -60,7 +60,8 @@ class RoomsController < ApplicationController
     room.out_date       = DateTime.parse(params[:out_date])
     room.room_type      = room_type_enum(params[:room_type])
     room.room_size      = params[:room_size     ].to_i
-    room.room_floor     = room_floor_enum(params[:room_floor])
+    room.room_floor     = room_floor_enum(params[:room_floor]) || 0
+    room.building_floor = params[:building_floor].to_i
     room.elevator       = params[:elevator      ]
     room.parking        = params[:parking       ]
     room.options        = params[:options       ]

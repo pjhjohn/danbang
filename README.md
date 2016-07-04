@@ -1,9 +1,2 @@
-# TODO
-Room New
-- carrierwave & fog & minimagick 으로 AWS S3 이미지 연동
-- 이미지 1개
-
-나중에 구현
-- 이미지 다중
-- Facebook 로그인
-- 메세지 보내기
+# 잔방처리반
+서울대학교 창의융합설계세미나 잔방처리반 팀의 웹페이지입니다.
